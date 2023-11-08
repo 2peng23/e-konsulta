@@ -31,7 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::get('patient', [AdminControler::class, 'patient'])->name('patient');
     Route::get('appointment', [AdminControler::class, 'appointment'])->name('appointment');
     Route::get('report', [AdminControler::class, 'report'])->name('report');
+    Route::post('add-doctor', [AdminControler::class, 'addDoctor'])->name('add-doctor');
+    Route::get('edit-doctor/{id}', [AdminControler::class, 'editDoctor'])->name('edit-doctor');
 });
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
