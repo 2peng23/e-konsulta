@@ -10,7 +10,9 @@
                         <!-- Start Logo -->
                         <div class="logo">
                             <a href="index.html">
-                                <h3>E-<span class="text-primary">Konsulta</span> </h3>
+                                <h3 class="text-primary">E-<span class="text-dark">Konsulta </span><i
+                                        class="fa fa fa-stethoscope"></i>
+                                </h3>
                                 {{-- <img src="user/img/logo.png" alt="#"> --}}
                             </a>
                         </div>
@@ -23,25 +25,12 @@
                         <!-- Main Menu -->
                         <div class="main-menu">
                             <nav class="navigation">
-                                <ul class="nav menu">
-                                    <li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home Page 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Doctos </a></li>
-                                    <li><a href="#">Services </a></li>
-                                    {{-- <li><a href="#">Pages <i class="icofont-rounded-down"></i></a>
-                                        <ul class="dropdown">
-                                            <li><a href="404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>
-                                        <ul class="dropdown">
-                                            <li><a href="blog-single.html">Blog Details</a></li>
-                                        </ul>
-                                    </li> --}}
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                <ul class="nav menu" id="listing">
+                                    <li class="active"><a href="/">Home</i></a></li>
+                                    <li class=""><a href="#about-section">About</i></a></li>
+                                    <li><a href="#doctor-section">Doctors </a></li>
+                                    <li><a href="#services-section">Services </a></li>
+                                    <li><a href="#footer-section">Contact Us</a></li>
                                     @if (Auth::check())
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">
@@ -57,11 +46,10 @@
                                         </li>
                                     @else
                                         <li>
-                                            <a href="{{ route('login') }}" class="text-primary fw-bolder">Login</a>
+                                            <a href="/login"><button class="bn632-hover bn26">Login</button></a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('register') }}"
-                                                class="text-primary fw-bolder">Register</a>
+                                            <a href="/register"><button class="bn632-hover bn26">Register</button></a>
                                         </li>
                                     @endif
                                 </ul>

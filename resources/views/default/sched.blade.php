@@ -1,5 +1,5 @@
 <!-- Start Schedule Area -->
-<section class="schedule">
+<section class="schedule" style="margin-bottom: -8%">
     <div class="container">
         <div class="schedule-inner">
             <div class="row">

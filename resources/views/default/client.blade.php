@@ -1,5 +1,5 @@
 <!-- Start clients -->
-<div class="clients overlay">
+<div class="clients overlay mb-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">

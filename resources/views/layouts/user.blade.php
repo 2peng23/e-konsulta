@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name='copyright' content=''>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <base href="/user">
 
     <!-- Title -->
     <title>E-Konsulta</title>
@@ -44,47 +45,6 @@
     <link rel="stylesheet" href="user/css/normalize.css">
     <link rel="stylesheet" href="user/style.css">
     <link rel="stylesheet" href="user/css/responsive.css">
-    <style>
-        /* button */
-        .bn632-hover {
-            width: 80px;
-            /* font-size: 16px;
-            font-weight: 600; */
-            color: #fff;
-            cursor: pointer;
-            /* margin: 10px; */
-            height: 30px;
-            text-align: center;
-            border: none;
-            background-size: 300% 100%;
-            border-radius: 50px;
-            moz-transition: all .4s ease-in-out;
-            -o-transition: all .4s ease-in-out;
-            -webkit-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
-        }
-
-        .bn632-hover:hover {
-            background-position: 100% 0;
-            moz-transition: all .4s ease-in-out;
-            -o-transition: all .4s ease-in-out;
-            -webkit-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
-        }
-
-        .bn632-hover:focus {
-            outline: none;
-        }
-
-        .bn632-hover.bn26 {
-            background-image: linear-gradient(to right,
-                    #25aae1,
-                    #4481eb,
-                    #04befe,
-                    #3f86ed);
-            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-        }
-    </style>
 
 
 </head>
@@ -126,14 +86,10 @@
     </ul> --}}
 
     @include('default.header')
-    @include('default.slider')
-    @include('default.sched')
-    @include('default.choose')
-    @include('default.feature')
-    @include('default.portfolio')
-    @include('default.service')
-    @include('default.price')
-    {{-- @include('default.client') --}}
+
+    @yield('content')
+
+
 
     @include('default.footer')
 
@@ -177,19 +133,6 @@
     <script src="user/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="user/js/main.js"></script>
-    {{-- li active --}}
-    <script>
-        var listItems = document.querySelectorAll("#listing li");
-
-        listItems.forEach(function(item) {
-            item.addEventListener('click', function() {
-                listItems.forEach(function(li) {
-                    li.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
-    </script>
 </body>
 
 </html>

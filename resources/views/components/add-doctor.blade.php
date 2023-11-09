@@ -14,7 +14,7 @@
                         <input autofocus type="text" name="name" class="form-control" id="name">
                     </div>
                     <div class="mb-1">
-                        <img id="preview" src="" alt="" style="width: 120px">
+                        <img id="preview" src="" alt="" class="rounded-circle" style="width: 120px">
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>

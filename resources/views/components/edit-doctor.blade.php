@@ -6,8 +6,9 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Doctor</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('add-doctor') }}" method="POST" id="add-doctor-form">
+            <form action="{{ route('update-doctor') }}" method="POST" id="update-doctor">
                 @csrf
+                <input type="text" name="item_id" id="item_id" hidden>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>

@@ -43,7 +43,7 @@ class AdminControler extends Controller
 
         // image
         $photo = $request->image;
-        $photoname = time() . '.' . $photo->getClientOriginalExtension();
+        $photoname = $photo->getClientOriginalName();
         $request->image->move('images', $photoname);
         $data->image = $photoname;
         $data->save();
@@ -56,6 +56,33 @@ class AdminControler extends Controller
         $doctor = Doctor::find($id);
         return response()->json([
             'doctor' => $doctor
+        ]);
+    }
+    public function updateDoctor(Request $request)
+    {
+        $item_id = $request->item_id;
+        $doctor = Doctor::find($item_id);
+        $doctor->name = $request->name;
+        $doctor->expertise = $request->expertise;
+        // image
+        $photo = $request->image;
+        if ($photo) {
+            $photoname = $photo->getClientOriginalName();
+            $request->image->move('images', $photoname);
+            $doctor->image = $photoname;
+        }
+        $doctor->save();
+        return response()->json([
+            'success' => 'Doctor updated successfully!'
+        ]);
+    }
+    public function deleteDoctor(Request $request)
+    {
+        $id = $request->id;
+        $doctor = Doctor::find($id);
+        $doctor->delete();
+        return response()->json([
+            'error' => 'Deleted!'
         ]);
     }
 }

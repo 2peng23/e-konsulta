@@ -8,12 +8,10 @@
                     <div class="col-lg-7">
                         <div class="text">
                             <h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl
-                                pellentesque, faucibus libero eu, gravida quam. </p>
-                            <div class="button">
+                            {{-- <div class="button">
                                 <a href="#" class="btn">Get Appointment</a>
                                 <a href="#" class="btn primary">Learn More</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -26,13 +24,11 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl
-                                pellentesque, faucibus libero eu, gravida quam. </p>
-                            <div class="button">
+                            <h1>Your <span>Health </span>Comes First!</h1>
+                            {{-- <div class="button">
                                 <a href="#" class="btn">Get Appointment</a>
                                 <a href="#" class="btn primary">About Us</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -45,13 +41,13 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl
-                                pellentesque, faucibus libero eu, gravida quam. </p>
-                            <div class="button">
+                            <h1>Discover Excellence in <span>Medical</span> Care. <br> Your Well-being is Our
+                                <span> Commitment</span>!
+                            </h1>
+                            {{-- <div class="button">
                                 <a href="#" class="btn">Get Appointment</a>
                                 <a href="#" class="btn primary">Conatct Now</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -40,10 +40,15 @@
                         <i class="fa fa-user-md"></i>
                         Doctor
                     </div>
-                    <p>0</p>
+                    <p>
+                        @php
+                            $doctor_count = App\Models\Doctor::count();
+                        @endphp
+                        {{ $doctor_count }}
+                    </p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" href="/doctor">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
