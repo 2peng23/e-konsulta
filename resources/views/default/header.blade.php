@@ -26,11 +26,16 @@
                         <div class="main-menu">
                             <nav class="navigation">
                                 <ul class="nav menu" id="listing">
-                                    <li class="active"><a href="/">Home</i></a></li>
-                                    <li class=""><a href="/#about-section">About</i></a></li>
+                                    @php
+                                        $isActive = Str::endsWith(url()->current(), '#about-section');
+                                    @endphp
+                                    <li class=""><a href="/">Home</i></a></li>
+                                    <li class="{{ $isActive ? 'active' : '' }}">
+                                        <a href="/#about-section">About</a>
+                                    </li>
                                     <li><a href="/#doctor-section">Doctors </a></li>
                                     <li><a href="/#services-section">Services </a></li>
-                                    <li><a href="/#footer-section">Contact Us</a></li>
+                                    <li><a href="/#package-section">Package</a></li>
                                     @if (Auth::check())
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">

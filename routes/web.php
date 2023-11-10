@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminControler;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,12 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('user')->group(function () {
         Route::get('make-appointment/{id}/{name}', [UserController::class, 'makeAppointment'])->name('make-appointment');
+        Route::get('getTime', [DoctorController::class, 'getTime'])->name('getTime');
+    });
+
+    Route::middleware('doctor')->group(function () {
+        Route::get('doctor-shedule', [DoctorController::class, 'doctorSched'])->name('doctor-schedule');
+        Route::post('add-sched', [DoctorController::class, 'addSched'])->name('add-sched');
     });
 });
 

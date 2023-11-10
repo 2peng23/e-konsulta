@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name='copyright' content=''>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <base href="/user">
 
     <!-- Title -->
     <title>E-Konsulta</title>
 
     <!-- Favicon -->
     <link rel="icon" href="user/img/favicon.png">
+    <base href="/user">
 
     <!-- Google Fonts -->
     <link
@@ -45,6 +45,47 @@
     <link rel="stylesheet" href="user/css/normalize.css">
     <link rel="stylesheet" href="user/style.css">
     <link rel="stylesheet" href="user/css/responsive.css">
+    <style>
+        /* button */
+        .bn632-hover {
+            width: 80px;
+            /* font-size: 16px;
+            font-weight: 600; */
+            color: #fff;
+            cursor: pointer;
+            /* margin: 10px; */
+            height: 30px;
+            text-align: center;
+            border: none;
+            background-size: 300% 100%;
+            border-radius: 50px;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:hover {
+            background-position: 100% 0;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:focus {
+            outline: none;
+        }
+
+        .bn632-hover.bn26 {
+            background-image: linear-gradient(to right,
+                    #25aae1,
+                    #4481eb,
+                    #04befe,
+                    #3f86ed);
+            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+        }
+    </style>
 
 
 </head>
@@ -67,23 +108,7 @@
     </div>
     <!-- End Preloader -->
 
-    {{-- <!-- Get Pro Button -->
-    <ul class="pro-features">
-        <a class="get-pro" href="#">Get Pro</a>
-        <li class="big-title">Pro Version Available on Themeforest</li>
-        <li class="title">Pro Version Features</li>
-        <li>2+ premade home pages</li>
-        <li>20+ html pages</li>
-        <li>Color Plate With 12+ Colors</li>
-        <li>Sticky Header / Sticky Filters</li>
-        <li>Working Contact Form With Google Map</li>
-        <div class="button">
-            <a href="http://preview.themeforest.net/item/mediplus-medical-and-doctor-html-template/full_screen_preview/26665910?_ga=2.145092285.888558928.1591971968-344530658.1588061879"
-                target="_blank" class="btn">Pro Version Demo</a>
-            <a href="https://themeforest.net/item/mediplus-medical-and-doctor-html-template/26665910" target="_blank"
-                class="btn">Buy Pro Version</a>
-        </div>
-    </ul> --}}
+
 
     @include('default.header')
 
@@ -94,7 +119,9 @@
     @include('default.footer')
 
     <!-- jquery Min JS -->
-    <script src="user/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- jquery Migrate JS -->
     <script src="user/js/jquery-migrate-3.0.0.js"></script>
     <!-- jquery Ui JS -->
@@ -133,6 +160,22 @@
     <script src="user/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="user/js/main.js"></script>
+    {{-- jquery --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+    {{-- li active --}}
+    <script>
+        var listItems = document.querySelectorAll("#listing li");
+
+        listItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                listItems.forEach(function(li) {
+                    li.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+    @yield('scripts')
 </body>
 
 </html>
