@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="d-flex justify-content-end ">
-        <button class="btn btn-success add-btn">
+        <button class="btn btn-primary add-btn">
             <i class="fa fa-user-plus"></i>
         </button>
     </div>

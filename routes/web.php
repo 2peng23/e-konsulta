@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
         Route::get('edit-doctor/{id}', [AdminControler::class, 'editDoctor'])->name('edit-doctor');
         Route::post('update-doctor', [AdminControler::class, 'updateDoctor'])->name('update-doctor');
         Route::get('delete-doctor', [AdminControler::class, 'deleteDoctor'])->name('delete-doctor');
+        Route::get('account', [AdminControler::class, 'account'])->name('account');
+        Route::post('add-account', [AdminControler::class, 'addAccount'])->name('add-account');
+        Route::get('edit-user/{id}', [AdminControler::class, 'editUser'])->name('edit-user');
     });
 
     Route::middleware('user')->group(function () {

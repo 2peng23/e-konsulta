@@ -27,10 +27,10 @@
                             <nav class="navigation">
                                 <ul class="nav menu" id="listing">
                                     <li class="active"><a href="/">Home</i></a></li>
-                                    <li class=""><a href="#about-section">About</i></a></li>
-                                    <li><a href="#doctor-section">Doctors </a></li>
-                                    <li><a href="#services-section">Services </a></li>
-                                    <li><a href="#footer-section">Contact Us</a></li>
+                                    <li class=""><a href="/#about-section">About</i></a></li>
+                                    <li><a href="/#doctor-section">Doctors </a></li>
+                                    <li><a href="/#services-section">Services </a></li>
+                                    <li><a href="/#footer-section">Contact Us</a></li>
                                     @if (Auth::check())
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">
@@ -40,7 +40,7 @@
                                                     onclick="event.preventDefault();
                                                                     this.closest('form').submit();">
                                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                    Logout
+                                                    <button class="bn632-hover bn26">Logout</button>
                                                 </a>
                                             </form>
                                         </li>

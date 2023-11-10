@@ -17,6 +17,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    {{-- aniamte css --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .bn632-hover {
+            width: 80px;
+            /* font-size: 16px; */
+            /* font-weight: 600; */
+            color: #fff;
+            cursor: pointer;
+            /* margin: 20px;
+            height: 55px; */
+            text-align: center;
+            border: none;
+            background-size: 300% 100%;
+            border-radius: 50px;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:hover {
+            background-position: 100% 0;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:focus {
+            outline: none;
+        }
+
+        .bn632-hover.bn26 {
+            background-image: linear-gradient(to right,
+                    #25aae1,
+                    #4481eb,
+                    #04befe,
+                    #3f86ed);
+            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+        }
+
+        /* red btn */
+        .bn632-hover {
+            width: 80px;
+            /* font-size: 16px;
+            font-weight: 600; */
+            color: #fff;
+            cursor: pointer;
+            /* margin: 20px;
+            height: 55px; */
+            text-align: center;
+            border: none;
+            background-size: 300% 100%;
+            border-radius: 50px;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:hover {
+            background-position: 100% 0;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .bn632-hover:focus {
+            outline: none;
+        }
+
+        .bn632-hover.bn27 {
+            background-image: linear-gradient(to right,
+                    #ed6ea0,
+                    #ec8c69,
+                    #f7186a,
+                    #fbb03b);
+            box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -133,6 +215,7 @@
             $(".owl-carousel").owlCarousel();
         });
     </script>
+    {{-- animate css --}}
     @yield('scripts')
 </body>
 

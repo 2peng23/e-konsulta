@@ -3,7 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link active" href="/">
+                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="/">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt text-primary"></i></div>
                     Dashboard
                 </a>
@@ -14,23 +14,30 @@
                     Healthcare Providers
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                    data-bs-parent="#sidenavAccordion">
+                <div class="collapse {{ request()->routeIs(['doctor', 'staff']) ? 'show' : '' }}" id="collapseLayouts"
+                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('doctor') }}">Doctor</a>
-                        <a class="nav-link" href="{{ route('staff') }}">Staff</a>
+                        <a class="nav-link {{ request()->routeIs('doctor') ? 'active' : '' }}"
+                            href="{{ route('doctor') }}">Doctor</a>
+                        <a class="nav-link {{ request()->routeIs('staff') ? 'active' : '' }}"
+                            href="{{ route('staff') }}">Staff</a>
                     </nav>
                 </div>
-                <a class="nav-link" href="{{ route('patient') }}">
+                <a class="nav-link {{ request()->routeIs('patient') ? 'active' : '' }}" href="{{ route('patient') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-users text-primary"></i></div>
                     Patient
                 </a>
-                <a class="nav-link" href="{{ route('appointment') }}">
+                <a class="nav-link {{ request()->routeIs('appointment') ? 'active' : '' }}"
+                    href="{{ route('appointment') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-calendar text-primary"></i></div>
                     Appointment
                 </a>
+                <a class="nav-link {{ request()->routeIs('account') ? 'active' : '' }}" href="{{ route('account') }}">
+                    <div class="sb-nav-link-icon"><i class="fa fa-user-circle text-primary"></i></div>
+                    Account
+                </a>
                 <div class="sb-sidenav-menu-heading">Report</div>
-                <a class="nav-link" href="{{route('report')}}">
+                <a class="nav-link" href="{{ route('report') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-file text-primary"></i></div>
                     Report
                 </a>
