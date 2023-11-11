@@ -30,12 +30,12 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
-                                    <input name="email" type="email" placeholder="Email">
+                                    <input name="email" type="text" placeholder="Email">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
-                                    <input name="phone" type="text" placeholder="Phone">
+                                    <input name="phone" type="number" placeholder="Phone">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
@@ -45,6 +45,7 @@
 
                                     @endphp
                                     <select name="date" id="date-select" class="form-select">
+                                        <option value="">Select Date</option>
                                         @foreach ($sched as $item)
                                             <option value="{{ $item->date }}">
                                                 {{ \Carbon\Carbon::parse($item->date)->format('F j, Y l') }}
@@ -142,6 +143,19 @@
                     // If you want to hide a success message after 1.5 seconds, uncomment the following lines
                     setTimeout(function() {
                         $("#success-modal").modal("hide");
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+                error: function(xhr, status, error) {
+                    // If you want to handle errors and display error messages, uncomment the following lines
+                    var errors = xhr.responseJSON.errors;
+                    var errorString = "";
+                    $.each(errors, function(key, value) {
+                        errorString += value + "<br>";
+                    });
+                    $("#error-modal").modal("show");
+                    $("#error-message").html(errorString);
+                    setTimeout(function() {
                         $("#error-modal").modal("hide");
                     }, 2000);
                 },

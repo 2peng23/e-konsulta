@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AppointmentRequest;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Schedule;
@@ -17,6 +18,13 @@ class UserController extends Controller
     public function getTime(Request $request)
     {
         $date = $request->date;
+        if ($date == '') {
+            return response()->json([
+                'output' => "<select id=\"selectedTime\" class=\"form-select-sm\" style=\"padding:12px; width:100%;\" name=\"time\">
+                <option>Select Time<option/>
+                </select>",
+            ]);
+        }
         $doctor = $request->doctor;
         $sched = Schedule::where('date', $date)->where('name', $doctor)->first();
         $appoint = Appointment::where('date', $date)->where('doctor', $doctor)->first();
@@ -27,18 +35,11 @@ class UserController extends Controller
             $scheduled = $disabledTime !== null && $disabledTime == $item ? 'scheduled' : '';
             return "<option value=\"$item\" $disabled>$item $scheduled</option>";
         })->implode('');
-
-
-
-
-
-
-
         $selectDropdown = "<select id=\"selectedTime\" class=\"form-select-sm\" style=\"padding:12px; width:100%;\" name=\"time\">$timeOptions</select>";
 
         return response()->json(['output' => $selectDropdown]);
     }
-    public function createAppointment(Request $request)
+    public function createAppointment(AppointmentRequest $request)
     {
         $date = $request->date;
         $doctor = $request->doctor;
