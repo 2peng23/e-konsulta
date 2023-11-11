@@ -11,7 +11,9 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="date" class="form-label">Date</label>
-                        <input autofocus type="date" name="date" class="form-control" id="date">
+                        <input autofocus type="date" name="date" class="form-control" id="date"
+                            min="<?php echo date('Y-m-d'); ?>">
+
                         <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                     </div>
                     <div class="mb-3">
@@ -62,8 +64,8 @@
                                 for="timestamp7">10:00am</label>
 
                             <!-- 10:30 am -->
-                            <input value="10:30am" type="checkbox" class="btn-check" id="timestamp8" autocomplete="off"
-                                name="time[]">
+                            <input value="10:30am" type="checkbox" class="btn-check" id="timestamp8"
+                                autocomplete="off" name="time[]">
                             <label class="btn btn-outline-primary" style="font-size:15px;"
                                 for="timestamp8">10:30am</label>
 
