@@ -10,7 +10,10 @@
                         <i class="fa fa-calendar"></i>
                         Appointment
                     </div>
-                    <p>0</p>
+                    @php
+                        $app = App\Models\Appointment::count();
+                    @endphp
+                    <p>{{ $app }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="#">View Details</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DoctorRequest;
+use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,11 +67,24 @@ class AdminControler extends Controller
         $item_id = $request->item_id;
         $doctor = Doctor::find($item_id);
 
-        if (!$doctor) {
-            return response()->json([
-                'error' => 'Doctor not found!'
-            ], 404);
+        if ($doctor) {
+            // change the user doctor name
+            $user = User::where('name', $doctor->name)->first();
+
+            if ($user) {
+                $user->name = $request->name;
+                $user->save();
+            }
+            // change the appointment doctor
+            $appointment = Appointment::where('doctor', $doctor->name)->first();
+            if ($appointment) {
+                $appointment->doctor = $request->name;
+                $appointment->save();
+            }
         }
+
+
+
 
         $doctor->name = $request->name;
         $doctor->expertise = $request->expertise;

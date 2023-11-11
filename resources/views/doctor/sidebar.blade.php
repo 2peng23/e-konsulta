@@ -14,7 +14,7 @@
                     Schedule
                 </a>
                 <a class="nav-link {{ request()->routeIs('doctor-appointment') ? 'active' : '' }}"
-                    href="{{ route('appointment') }}">
+                    href="{{ route('doctor-appointment') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-file text-primary"></i></div>
                     Appointment
                 </a>

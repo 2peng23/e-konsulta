@@ -27,14 +27,15 @@ class UserController extends Controller
         }
         $doctor = $request->doctor;
         $sched = Schedule::where('date', $date)->where('name', $doctor)->first();
-        $appoint = Appointment::where('date', $date)->where('doctor', $doctor)->first();
-        $disabledTime = $appoint ? $appoint->time : null;
+        $appoint = Appointment::where('date', $date)->where('doctor', $doctor)->get();
+        $disabledTime = $appoint->isNotEmpty() ? $appoint->pluck('time')->toArray() : [];
 
         $timeOptions = collect($sched->time)->map(function ($item) use ($disabledTime) {
-            $disabled = $disabledTime !== null && $disabledTime == $item ? 'disabled' : '';
-            $scheduled = $disabledTime !== null && $disabledTime == $item ? 'scheduled' : '';
+            $disabled = in_array($item, $disabledTime) ? 'disabled' : '';
+            $scheduled = in_array($item, $disabledTime) ? 'scheduled' : '';
             return "<option value=\"$item\" $disabled>$item $scheduled</option>";
         })->implode('');
+
         $selectDropdown = "<select id=\"selectedTime\" class=\"form-select-sm\" style=\"padding:12px; width:100%;\" name=\"time\">$timeOptions</select>";
 
         return response()->json(['output' => $selectDropdown]);

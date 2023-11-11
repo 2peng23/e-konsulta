@@ -19,7 +19,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>Date</th>
-                            <th>time</th>
+                            <th>Time(s)</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -33,8 +33,10 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <button class="btn"><i class="fa fa-pencil text-success"></i></button>
-                                    <button class="btn"><i class="fa fa-trash text-danger"></i></button>
+                                    <button value="{{ $item->id }}" class="bn632-hover bn26 edit-btn"><i
+                                            class="fa fa-pencil"></i></button>
+                                    <button value="{{ $item->id }}" class="bn632-hover bn27 delete-btn"><i
+                                            class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach

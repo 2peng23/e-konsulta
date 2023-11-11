@@ -53,7 +53,9 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('doctor')->group(function () {
         Route::get('doctor-shedule', [DoctorController::class, 'doctorSched'])->name('doctor-schedule');
+        Route::get('doctor-appointment', [DoctorController::class, 'doctorAppointment'])->name('doctor-appointment');
         Route::post('add-sched', [DoctorController::class, 'addSched'])->name('add-sched');
+        Route::get('approve/{id}', [DoctorController::class, 'approve'])->name('approve');
     });
 });
 
