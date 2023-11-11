@@ -47,7 +47,8 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('user')->group(function () {
         Route::get('make-appointment/{id}/{name}', [UserController::class, 'makeAppointment'])->name('make-appointment');
-        Route::get('getTime', [DoctorController::class, 'getTime'])->name('getTime');
+        Route::get('getTime', [UserController::class, 'getTime'])->name('getTime');
+        Route::post('create-appointment', [UserController::class, 'createAppointment'])->name('create-appointment');
     });
 
     Route::middleware('doctor')->group(function () {

@@ -7,6 +7,43 @@
     </div>
     <x-add-sched />
     <x-ajax-message />
+    @php
+        $sched = App\Models\Schedule::where('name', Auth::user()->name)->get();
+    @endphp
+    <div id="data">
+        @if ($sched->isEmpty())
+            <p>No schedule available.</p>
+        @else
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Date</th>
+                            <th>time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($sched as $item)
+                            <tr class="text-center">
+                                <td>{{ \Carbon\Carbon::parse($item->date)->format('F j, Y l') }}</td>
+                                <td>
+                                    @foreach ($item->time as $time)
+                                        {{ $time }},
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <button class="btn"><i class="fa fa-pencil text-success"></i></button>
+                                    <button class="btn"><i class="fa fa-trash text-danger"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
+    </div>
+
 @endsection
 @section('scripts')
     <script>
@@ -16,10 +53,10 @@
             $("#add-sched").modal("show");
         });
 
-        $("#add-doctor-form").submit(function(e) {
+        $("#add-sched-form").submit(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('add-doctor') }}",
+                url: "{{ route('add-sched') }}",
                 data: new FormData(this),
                 method: "POST",
                 processData: false,
@@ -27,17 +64,13 @@
                 success: function(result) {
                     console.log(result);
                     if (result.success) {
-                        $("#add-doctor-form")[0].reset();
+                        $("#add-sched-form")[0].reset();
                         $("#success-modal").modal("show");
                         $("#success-message").html(result.success);
-                        $("#preview").attr("src", "");
                         // If you want to hide the modal after a successful submission, uncomment the following line
-                        $("#add-modal").modal("hide");
-                        $("#dataa").load(
-                            window.location.href + " #dataa",
-                            function() {
-                                toggleAction();
-                            }
+                        $("#add-sched").modal("hide");
+                        $("#data").load(
+                            window.location.href + " #data"
                         );
                     } else {
                         $("#error-modal").modal("show");

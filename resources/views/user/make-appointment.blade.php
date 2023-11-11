@@ -3,6 +3,7 @@
 @section('content')
     {{-- @include('default.appointment', compact('doctor')) --}}
     <!-- Start Appointment -->
+    <x-ajax-message />
     <section class="appointment">
         <div class="container">
             <div class="row">
@@ -19,11 +20,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-12">
-                    <form class="form" action="#">
+                    <form class="form" action="{{ route('create-appointment') }}" id="create-appointment" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
-                                    <input name="name" type="text" placeholder="Name">
+                                    <input name="name" type="text" placeholder="Full Name">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
@@ -43,10 +45,9 @@
 
                                     @endphp
                                     <select name="date" id="date-select" class="form-select">
-                                        <option selected>Select Date</option>
                                         @foreach ($sched as $item)
                                             <option value="{{ $item->date }}">
-                                                {{ \Carbon\Carbon::parse($item->date)->format('F j, Y') }}
+                                                {{ \Carbon\Carbon::parse($item->date)->format('F j, Y l') }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -65,6 +66,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="text" name="doctor" id="doctor-name" value="{{ $doctor->name }}" hidden>
                         <div class="row">
                             <div class="col-lg-5 col-md-4 col-12">
                                 <div class="form-group">
@@ -95,13 +97,13 @@
         $('#date-select').change(function() {
             // Get the selected value
             var date = $(this).val();
-            var message = $('#message-area');
-            message.html(date)
+            var doctor = $('#doctor-name').val();
             // Make the Ajax request inside the change event handler
             $.ajax({
                 url: "{{ route('getTime') }}",
                 data: {
-                    date: date
+                    date: date,
+                    doctor: doctor
                 },
                 type: 'get',
                 dataType: 'json', // Specify that the expected response is JSON
@@ -115,5 +117,35 @@
             });
 
         });
+
+        // submit form
+        $('#create-appointment').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('create-appointment') }}",
+                data: new FormData(this),
+                method: "POST",
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    console.log(result.success);
+                    // console.log(result);
+                    if (result.success) {
+                        $("#create-appointment")[0].reset();
+                        $("#success-modal").modal("show");
+                        $("#success-message").html(result.success);
+                        // If you want to hide the modal after a successful submission, uncomment the following line
+                    } else {
+                        $("#error-modal").modal("show");
+                        $("#error-message").html(result.error);
+                    }
+                    // If you want to hide a success message after 1.5 seconds, uncomment the following lines
+                    setTimeout(function() {
+                        $("#success-modal").modal("hide");
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+            })
+        })
     });
 </script>

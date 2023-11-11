@@ -8,7 +8,10 @@
                         <i class="fa fa-calendar"></i>
                         Schedule
                     </div>
-                    <p>0</p>
+                    @php
+                        $sched = App\Models\Schedule::where('name', Auth::user()->name)->count();
+                    @endphp
+                    <p>{{ $sched }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="#">View Details</a>
@@ -20,10 +23,13 @@
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body d-flex justify-content-between ">
                     <div>
-                        <i class="fa fa-users"></i>
+                        <i class="fa fa-file"></i>
                         Appointment
                     </div>
-                    <p>0</p>
+                    @php
+                        $appoint = App\Models\Appointment::where('doctor', Auth::user()->name)->count();
+                    @endphp
+                    <p>{{ $appoint }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="#">View Details</a>

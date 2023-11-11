@@ -23,10 +23,15 @@
                                  <p style="font-weight: bold; font-size:20px">Dr. {{ $item->name }}</p>
                                  <p>{{ $item->expertise }}</p>
                              </div>
-                             <a @if (Auth::check()) href="{{ route('make-appointment', [$item->id, $item->name]) }}"
-                             @else
-                             href="/login" @endif
-                                 class="btn text-white">Make an appointment</a>
+                             @php
+                                 $doctor = App\Models\Schedule::where('name', $item->name)->count();
+                             @endphp
+                             @if ($doctor > 0)
+                                 <a @if (Auth::check()) href="{{ route('make-appointment', [$item->id, $item->name]) }}"
+                                    href="/login" @endif
+                                     class="btn text-white">Make an appointment
+                                 </a>
+                             @endif
                          </div>
                      @endforeach
                  </div>

@@ -6,7 +6,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Add Schedule</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('add-sched') }}" method="POST" id="add-sched">
+            <form action="{{ route('add-sched') }}" method="POST" id="add-sched-form">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">

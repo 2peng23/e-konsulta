@@ -28,7 +28,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Dr. {{ Auth::user()->name }} <i class="fa fa-user-md text-primary"></i>
+            <i class="fa fa-user-md text-primary"></i> Dr. {{ Auth::user()->name }}
         </div>
     </nav>
 </div>
