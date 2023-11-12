@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('time');
             $table->string('doctor');
-            $table->string('message');
+            $table->string('message')->nullable();
+            $table->string('user_id');
             $table->string('status')->default('pending');
             $table->timestamps();
         });

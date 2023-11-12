@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -56,11 +57,13 @@ class UserController extends Controller
 
 
         $appoint = new Appointment();
+        $appoint->user_id = Auth::user()->id;
         $appoint->name = $request->name;
         $appoint->date = $date;
         $appoint->time = $time;
         $appoint->phone = $request->phone;
         $appoint->email = $request->email;
+        $appoint->message = $request->message;
         $appoint->doctor = $doctor;
         $appoint->save();
 

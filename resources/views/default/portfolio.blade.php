@@ -28,6 +28,7 @@
                              @endphp
                              @if ($doctor > 0)
                                  <a @if (Auth::check()) href="{{ route('make-appointment', [$item->id, $item->name]) }}"
+                                    @else
                                     href="/login" @endif
                                      class="btn text-white">Make an appointment
                                  </a>
