@@ -74,4 +74,46 @@ class DoctorController extends Controller
             return response()->json(['error' => 'SMS sending failed']);
         }
     }
+    public function decline($id)
+    {
+        $appoint = Appointment::where('doctor', Auth::user()->name)->where('id', $id)->first();
+        $appoint->status = 'declined';
+        $appoint->save();
+
+        $details = [
+            'greetings' => 'Dear Mr/Mrs ' . $appoint->name . ',',
+            'body' => 'Your appointment with Doctor ' . $appoint->doctor . ' on ' . date('l,F d, Y', strtotime($appoint->date)) . ' ' . $appoint->time . ' has been declined. Sorry for the inconvenience, please create another appointment.',
+            // 'actiontext' => 'View appointment details ',
+            // 'actionurl' => url('myappointment'),
+            'endpart' => ' Thank You!'
+        ];
+        // Construct the request body
+        $body = [
+            'number' => $appoint->phone,
+            'message' => $details['greetings'] . $details['body'] . $details['endpart'],
+            'sendername' => 'Birung',
+            'apikey' => 'bf09f02bd326ac4b087d104786368fdf' // Replace with your Semaphore API key
+        ];
+
+        // Send the request using Guzzle HTTP client
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post('https://api.semaphore.co/api/v4/messages', [
+            'form_params' => $body
+        ]);
+        // Check the response status code
+        $statusCode = $response->getStatusCode();
+        if ($statusCode === 200) {
+            // SMS sent successfully
+            return response()->json([
+                'success' => 'Patient successfully notified!'
+            ]);
+        } else {
+            // SMS sending failed
+            return response()->json(['error' => 'SMS sending failed']);
+        }
+    }
+    public function doctorPatient()
+    {
+        return view('doctor.patient');
+    }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AppointmentRequest;
+use App\Http\Requests\PatientRequest;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +49,7 @@ class UserController extends Controller
         $doctor = $request->doctor;
         $time = $request->time;
 
-        $existing_appoint = Appointment::where('name', $request->name)->where('status', '!=', 'approved')->first();
+        $existing_appoint = Appointment::where('name', $request->name)->where('status', 'pending')->first();
         if ($existing_appoint) {
             return response()->json([
                 'error' => 'You still have pending appointment!'
@@ -69,6 +71,47 @@ class UserController extends Controller
 
         return response()->json([
             'success' => 'Appointment created!'
+        ]);
+    }
+    public function myAppointment()
+    {
+        return view('user.appointment');
+    }
+    public function addPatient(PatientRequest $request)
+    {
+        $name = $request->name;
+        $existing = Patient::whereName($name)->first();
+        if ($existing) {
+            return response()->json([
+                'error' => 'Patient already exist! No need to fill-up this form.'
+            ]);
+        }
+        $patient = new Patient();
+        $patient->name = $request->name;
+        $patient->address = $request->address;
+        $patient->age = $request->age;
+        $patient->sex = $request->sex;
+        $patient->birthday = $request->birthday;
+        $patient->civil_status = $request->civil_status;
+        $patient->father_name = $request->father_name;
+        $patient->mother_name = $request->mother_name;
+        $patient->father_occupation = $request->father_occupation;
+        $patient->mother_occupation = $request->mother_occupation;
+        $patient->referred = $request->referred;
+        $patient->save();
+        return response()->json([
+            'success' => 'Patient added successfully!'
+        ]);
+    }
+    public function cancelAppointment(Request $request)
+    {
+        $id = $request->id;
+        $appoint = Appointment::where('id', $id)->first();
+        $appoint->time = '0:00';
+        $appoint->status = 'cancelled';
+        $appoint->save();
+        return response()->json([
+            'error' => 'Appointment cancelled'
         ]);
     }
 }

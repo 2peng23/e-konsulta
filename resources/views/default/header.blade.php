@@ -35,7 +35,11 @@
                                     </li>
                                     <li><a href="/#doctor-section">Doctors </a></li>
                                     <li><a href="/#services-section">Services </a></li>
-                                    <li><a href="/#package-section">Package</a></li>
+                                    @if (Auth::check())
+                                        <li><a href="{{ route('my-appointment') }}">Appointment</a></li>
+                                    @else
+                                        <li><a href="/#package-section">Package</a></li>
+                                    @endif
                                     @if (Auth::check())
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">

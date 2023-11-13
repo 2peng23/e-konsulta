@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
         Route::get('make-appointment/{id}/{name}', [UserController::class, 'makeAppointment'])->name('make-appointment');
         Route::get('getTime', [UserController::class, 'getTime'])->name('getTime');
         Route::post('create-appointment', [UserController::class, 'createAppointment'])->name('create-appointment');
+        Route::get('my-appointment', [UserController::class, 'myAppointment'])->name('my-appointment');
+        Route::get('cancel-appointment', [UserController::class, 'cancelAppointment'])->name('cancel-appointment');
     });
 
     Route::middleware('doctor')->group(function () {
@@ -56,7 +58,11 @@ Route::middleware('auth')->group(function () {
         Route::get('doctor-appointment', [DoctorController::class, 'doctorAppointment'])->name('doctor-appointment');
         Route::post('add-sched', [DoctorController::class, 'addSched'])->name('add-sched');
         Route::get('approve/{id}', [DoctorController::class, 'approve'])->name('approve');
+        Route::get('decline/{id}', [DoctorController::class, 'decline'])->name('decline');
+        Route::get('doctor-patient', [DoctorController::class, 'doctorPatient'])->name('doctor-patient');
     });
+
+    Route::post('add-patient', [UserController::class, 'addPatient'])->name('add-patient');
 });
 
 

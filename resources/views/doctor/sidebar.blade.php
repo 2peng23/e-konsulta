@@ -19,7 +19,7 @@
                     Appointment
                 </a>
                 <a class="nav-link {{ request()->routeIs('doctor-patient') ? 'active' : '' }}"
-                    href="{{ route('patient') }}">
+                    href="{{ route('doctor-patient') }}">
                     <div class="sb-nav-link-icon"><i class="fa fa-users text-primary"></i></div>
                     Patient
                 </a>

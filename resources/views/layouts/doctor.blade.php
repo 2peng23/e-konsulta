@@ -98,6 +98,23 @@
                     #fbb03b);
             box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
         }
+
+        /* Define the keyframes for the rotation */
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Apply the animation to an element */
+        .rotate {
+            animation: rotate 4s linear infinite;
+            /* 4s duration, linear timing, infinite loop */
+        }
     </style>
 </head>
 

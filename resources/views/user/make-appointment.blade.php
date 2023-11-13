@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
-                                    <input name="name" type="text" placeholder="Full Name">
+                                    <input name="name" type="text" placeholder="Patient's Full Name">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
@@ -44,7 +44,7 @@
                                         $sched = \App\Models\Schedule::where('name', $doctor->name)->get();
 
                                     @endphp
-                                    <select name="date" id="date-select" class="form-select">
+                                    <select name="date" id="date-select" class="form-control">
                                         <option value="">Select Date</option>
                                         @foreach ($sched as $item)
                                             <option value="{{ $item->date }}">
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group" id="time-select">
-                                    <select name="time" class="form-select">
+                                    <select name="time" class="form-control">
                                         <option selected>Select Time</option>
                                     </select>
                                 </div>
