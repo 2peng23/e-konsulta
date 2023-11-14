@@ -5,54 +5,46 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-12 ">
                     <!-- single-schedule -->
-                    <div class="single-schedule first">
+                    <div class="single-schedule first position-relative " style="height: 220px">
                         <div class="inner">
-                            <div class="icon">
-                                <i class="fa fa-ambulance"></i>
+                            <div class="icon" style="position: absolute; top:50px;right:0px">
+                                <i class="fa fa-user-md"></i>
                             </div>
                             <div class="single-content">
-                                <span>Lorem Amet</span>
-                                <h4>Emergency Cases</h4>
-                                <p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus
-                                    convallis sodales.</p>
-                                <a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+                                <h4>Walk-in Patients</h4>
+                                <p>E-Konsulta warmly welcomes walk-in patients, providing accessible and
+                                    immediate healthcare services.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
                     <!-- single-schedule -->
-                    <div class="single-schedule middle">
+                    <div class="single-schedule middle" style="height: 220px">
                         <div class="inner">
-                            <div class="icon">
+                            <div class="icon" style="position: absolute; top:50px;right:0px">
                                 <i class="icofont-prescription"></i>
                             </div>
                             <div class="single-content">
-                                <span>Fusce Porttitor</span>
-                                <h4>Doctors Timetable</h4>
-                                <p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus
-                                    convallis sodales.</p>
-                                <a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+                                <h4>Online Appointment</h4>
+                                <p>Patients can
+                                    schedule appointments with their preferred healthcare professionals, select
+                                    convenient time slots, and provide essential information prior to their visit. </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-12">
                     <!-- single-schedule -->
-                    <div class="single-schedule last">
+                    <div class="single-schedule last" style="height: 220px">
                         <div class="inner">
-                            <div class="icon">
-                                <i class="icofont-ui-clock"></i>
+                            <div class="icon" style="position: absolute; top:50px;right:0px">
+                                <i class="fa fa-bell"></i>
                             </div>
                             <div class="single-content">
-                                <span>Donec luctus</span>
-                                <h4>Opening Hours</h4>
-                                <ul class="time-sidual">
-                                    <li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
-                                    <li class="day">Saturday <span>9.00-18.30</span></li>
-                                    <li class="day">Monday - Thusday <span>9.00-15.00</span></li>
-                                </ul>
-                                <a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+                                <h4>SMS Notification</h4>
+                                <p>Our automated messaging service sends timely reminders to patients prior to their
+                                    scheduled appointments, helping them stay informed and organized.</p>
                             </div>
                         </div>
                     </div>

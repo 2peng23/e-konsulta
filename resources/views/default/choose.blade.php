@@ -15,26 +15,17 @@
                 <!-- Start Choose Left -->
                 <div class="choose-left">
                     <h3>Who We Are</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est
-                        lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>
-                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    </p>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list">
-                                <li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
-                                <li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
-                                <li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list">
-                                <li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
-                                <li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
-                                <li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <p class="text-muted text-justify lh-lg" style="font-size: 16px;"><span class="text-primary">
+                            E-Konsulta</span> is committed to
+                        revolutionizing the way
+                        individuals access and
+                        experience medical
+                        services. Our state-of-the-art platform seamlessly integrates advanced technology with
+                        compassionate care, offering users the ability to schedule appointments online, receive timely
+                        SMS reminders, and enjoy walk-in access to our top-notch medical facilities. At E-Konsulta, we
+                        prioritize your health and well-being, combining innovation and accessibility to redefine the
+                        standards of modern healthcare. Join us on a journey where your medical needs are met with
+                        efficiency, expertise, and a commitment to your overall wellness. </p>
                 </div>
                 <!-- End Choose Left -->
             </div>

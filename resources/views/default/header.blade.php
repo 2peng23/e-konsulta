@@ -6,7 +6,7 @@
         <div class="container">
             <div class="inner">
                 <div class="row">
-                    <div class="col-lg-4 col-md-3 col-12">
+                    <div class="col-lg-4 col-md-2 col-12">
                         <!-- Start Logo -->
                         <div class="logo">
                             <a href="index.html">
@@ -21,7 +21,7 @@
                         <div class="mobile-nav"></div>
                         <!-- End Mobile Nav -->
                     </div>
-                    <div class="col-lg-8 col-md-9 col-12">
+                    <div class="col-lg-8 col-md-10 col-12">
                         <!-- Main Menu -->
                         <div class="main-menu">
                             <nav class="navigation">

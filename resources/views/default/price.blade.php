@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
+            <div class="col-lg-4 col-md-12 col-12 wow fadeInLeft">
                 <div class="single-table">
                     <!-- Table Head -->
                     <div class="table-head">
@@ -48,7 +48,7 @@
             </div>
             <!-- End Single Table-->
             <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
+            <div class="col-lg-4 col-md-12 col-12 wow fadeInUp">
                 <div class="single-table">
                     <!-- Table Head -->
                     <div class="table-head">
@@ -71,7 +71,7 @@
             </div>
             <!-- End Single Table-->
             <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
+            <div class="col-lg-4 col-md-12 col-12 wow fadeInRight">
                 <div class="single-table">
                     <!-- Table Head -->
                     <div class="table-head">
@@ -99,9 +99,10 @@
             </div>
             <!-- End Single Table-->
         </div>
-        <div class="row">
+        <button id="more-pack" class="px-3 py-3 rounded bg-primary text-white">Show More</button>
+        <div class="row" id="more-info" style="display: none">
             <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
+            <div class="col-lg-4 col-md-12 col-12 wow fadeInDown">
                 <div class="single-table">
                     <!-- Table Head -->
                     <div class="table-head">
@@ -115,11 +116,21 @@
                     <ul class="table-list text-uppercase">
                         <li><i class="icofont icofont-ui-check"></i>CBC w/ PC</li>
                         <li><i class="icofont icofont-ui-check"></i>Urinalysis</li>
-                        <li><i class="icofont icofont-ui-check"></i></li>
-                        <li><i class="icofont icofont-ui-check"></i></li>
-                        <li><i class="icofont icofont-ui-check"></i></li>
-                        <li><i class="icofont icofont-ui-check"></i></li>
-                        <li><i class="icofont icofont-ui-check"></i></li>
+                        <p class="fw-bolder my-2">Chemistry 10</p>
+                        <li><i class="icofont icofont-ui-check"></i>FBS</li>
+                        <li><i class="icofont icofont-ui-check"></i>Cholesterol</li>
+                        <li><i class="icofont icofont-ui-check"></i>Triglycerides</li>
+                        <li><i class="icofont icofont-ui-check"></i>HDL</li>
+                        <li><i class="icofont icofont-ui-check"></i>LDL</li>
+                        <li><i class="icofont icofont-ui-check"></i>BUA</li>
+                        <li><i class="icofont icofont-ui-check"></i>BUN</li>
+                        <li><i class="icofont icofont-ui-check"></i>Creatinine</li>
+                        <li><i class="icofont icofont-ui-check"></i>SGOT</li>
+                        <li><i class="icofont icofont-ui-check"></i>SGPT</li>
+                        <p class="fw-bolder my-2">Electrolytes</p>
+                        <li><i class="icofont icofont-ui-check"></i>Sodium</li>
+                        <li><i class="icofont icofont-ui-check"></i>Potassium</li>
+                        <li><i class="icofont icofont-ui-check"></i>Chloride</li>
                     </ul>
                     <div class="table-bottom">
                         <a class="btn" href="#">Book Now</a>
@@ -129,7 +140,7 @@
             </div>
             <!-- End Single Table-->
             <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
+            <div class="col-lg-4 col-md-12 col-12 wow fadeInDown">
                 <div class="single-table">
                     <!-- Table Head -->
                     <div class="table-head">
@@ -142,7 +153,17 @@
                     <ul class="table-list text-uppercase">
                         <li><i class="icofont icofont-ui-check"></i>CBC w/ PC</li>
                         <li><i class="icofont icofont-ui-check"></i>Urinalysis</li>
-                        <li><i class="icofont icofont-ui-check"></i>Fecalysis</li>
+                        <p class="fw-bolder my-2">Chemistry 10</p>
+                        <li><i class="icofont icofont-ui-check"></i>FBS</li>
+                        <li><i class="icofont icofont-ui-check"></i>Cholesterol</li>
+                        <li><i class="icofont icofont-ui-check"></i>Triglycerides</li>
+                        <li><i class="icofont icofont-ui-check"></i>HDL</li>
+                        <li><i class="icofont icofont-ui-check"></i>LDL</li>
+                        <li><i class="icofont icofont-ui-check"></i>BUA</li>
+                        <li><i class="icofont icofont-ui-check"></i>BUN</li>
+                        <li><i class="icofont icofont-ui-check"></i>Creatinine</li>
+                        <li><i class="icofont icofont-ui-check"></i>SGOT</li>
+                        <li><i class="icofont icofont-ui-check"></i>SGPT</li>
                     </ul>
                     <div class="table-bottom">
                         <a class="btn" href="#">Book Now</a>
@@ -152,7 +173,7 @@
             </div>
             <!-- End Single Table-->
             <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
+            <div class="col-lg-4 col-md-12 col-12 wow fadeInDown">
                 <div class="single-table">
                     <!-- Table Head -->
                     <div class="table-head">
@@ -168,9 +189,9 @@
                     <ul class="table-list text-uppercase">
                         <li><i class="icofont icofont-ui-check"></i>CBC w/ Platelet</li>
                         <li><i class="icofont icofont-ui-check"></i>Urinalysis</li>
-                        <li><i class="icofont icofont-ui-check"></i>Blood Typing</li>
+                        <li><i class="icofont icofont-ui-check"></i>Fecalysis</li>
                         <li><i class="icofont icofont-ui-check"></i>HbsAg</li>
-                        <li><i class="icofont icofont-ui-check"></i>VRDRL</li>
+                        <li><i class="icofont icofont-ui-check"></i>Chest X-Ray</li>
                     </ul>
                     <div class="table-bottom">
                         <a class="btn" href="#">Book Now</a>
@@ -183,3 +204,17 @@
     </div>
 </section>
 <!--/ End Pricing Table -->
+<script>
+    var moreBtn = document.getElementById('more-pack');
+    var info = document.getElementById('more-info');
+
+    moreBtn.addEventListener('click', function() {
+        if (info.style.display === 'flex') {
+            moreBtn.innerHTML = 'Show More'
+            info.style.display = 'none';
+        } else {
+            moreBtn.innerHTML = 'Show Less'
+            info.style.display = 'flex';
+        }
+    });
+</script>
