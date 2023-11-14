@@ -23,10 +23,5 @@ class DatabaseSeeder extends Seeder
             'usertype' => 1,
             'email' => 'admin@admin.com',
         ]);
-        \App\Models\User::factory()->create([
-            'name' => 'Doctor',
-            'usertype' => 2,
-            'email' => 'doctor@doctor.com',
-        ]);
     }
 }

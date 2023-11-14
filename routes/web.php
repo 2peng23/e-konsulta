@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
         Route::get('approve/{id}', [DoctorController::class, 'approve'])->name('approve');
         Route::get('decline/{id}', [DoctorController::class, 'decline'])->name('decline');
         Route::get('doctor-patient', [DoctorController::class, 'doctorPatient'])->name('doctor-patient');
+        Route::get('patient-info', [DoctorController::class, 'patientInfo'])->name('patient-info');
+        Route::post('update-patient', [DoctorController::class, 'updatePatient'])->name('update-patient');
     });
 
     Route::post('add-patient', [UserController::class, 'addPatient'])->name('add-patient');

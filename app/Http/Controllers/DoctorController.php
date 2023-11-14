@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SchedRequest;
 use App\Models\Appointment;
+use App\Models\Patient;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -115,5 +116,38 @@ class DoctorController extends Controller
     public function doctorPatient()
     {
         return view('doctor.patient');
+    }
+    public function patientInfo(Request $request)
+    {
+        $id = $request->id;
+        $patient = Patient::where('id', $id)->first();
+        return response()->json([
+            'patient' => $patient
+        ]);
+    }
+    public function updatePatient(Request $request)
+    {
+        $id = $request->id;
+        $newDiagnosis = $request->diagnosis;
+
+        // Retrieve the patient
+        $patient = Patient::find($id);
+
+
+        // Parse the existing JSON diagnosis into an array or use an empty array if null
+        $currentDiagnosis = json_decode($patient->diagnosis, true);
+
+        // Merge the new diagnosis data into the existing array
+        $updatedDiagnosis = array_merge($currentDiagnosis, $newDiagnosis);
+
+        // Encode the merged array back to JSON
+        $patient->diagnosis = json_encode($updatedDiagnosis);
+
+        // Save the updated patient
+        $patient->save();
+
+        return response()->json([
+            'success' => 'Patient updated!'
+        ]);
     }
 }

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('mother_occupation')->nullable();
             $table->string('referred')->nullable();
             $table->longText('complaints')->nullable();
-            $table->json('disagnosis')->nullable();
+            $table->json('diagnosis')->nullable();
             $table->longText('treatment')->nullable();
             $table->timestamps();
         });
