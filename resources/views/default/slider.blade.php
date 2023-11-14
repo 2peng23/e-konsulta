@@ -2,7 +2,7 @@
 <section class="slider">
     <div class="hero-slider">
         <!-- Start Single Slider -->
-        <div class="single-slider" style="background-image:url('user/img/slider2.jpg')">
+        <div class="single-slider">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
@@ -14,12 +14,15 @@
                             </div> --}}
                         </div>
                     </div>
+                    <div class="col-lg-5 wow bounceIn" data-wow-duration="2s" data-wow-delay="0.5s">
+                        <img src="user/img/bg1.svg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
         <!-- End Single Slider -->
         <!-- Start Single Slider -->
-        <div class="single-slider" style="background-image:url('user/img/slider.jpg')">
+        <div class="single-slider" style="">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
@@ -31,12 +34,15 @@
                             </div> --}}
                         </div>
                     </div>
+                    <div class="col-lg-5 wow bounceIn" data-wow-duration="3s" data-wow-delay="0.5s">
+                        <img src="user/img/bg2.svg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Start End Slider -->
         <!-- Start Single Slider -->
-        <div class="single-slider" style="background-image:url('user/img/slider3.jpg')">
+        <div class="single-slider" style="">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
@@ -49,6 +55,9 @@
                                 <a href="#" class="btn primary">Conatct Now</a>
                             </div> --}}
                         </div>
+                    </div>
+                    <div class="col-lg-5 wow bounceIn" data-wow-duration="2s" data-wow-delay="0.5s">
+                        <img src="user/img/bg3.svg" alt="">
                     </div>
                 </div>
             </div>

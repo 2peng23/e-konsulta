@@ -32,14 +32,27 @@
                                     <li class="">
                                         <a href="#about-section">About</a>
                                     </li>
-                                    <li><a href="#doctor-section">Doctors </a></li>
-                                    <li><a href="#services-section">Services </a></li>
                                     @if (Auth::check())
-                                        <li class="{{ request()->routeIs('my-appointment') ? 'active' : '' }}"><a
-                                                href="{{ route('my-appointment') }}">Appointment</a></li>
+                                        <li
+                                            class="nav-item dropdown {{ request()->routeIs('my-appointment', 'my-doctor') ? 'active' : '' }}">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                My Appointments
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item {{ request()->routeIs('my-appointment') ? 'active text-white' : 'text-dark' }}"
+                                                    href="{{ route('my-appointment') }}">Appointment</a>
+                                                <a class="dropdown-item {{ request()->routeIs('my-doctor') ? 'active text-white' : 'text-dark' }}"
+                                                    href="#doctor-section">Doctor</a>
+                                            </div>
+                                        </li>
                                     @else
-                                        <li><a href="#package-section">Package</a></li>
+                                        <li><a href="#doctor-section">Doctor</a></li>
                                     @endif
+                                    <li><a href="#services-section">Services </a></li>
+
+                                    <li><a href="#package-section">Package</a></li>
                                     @if (Auth::check())
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">

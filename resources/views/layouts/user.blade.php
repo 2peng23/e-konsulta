@@ -15,10 +15,20 @@
 
     <!-- Favicon -->
     <link rel="icon" href="user/img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    {{-- animate css --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <base href="/dashboard">
+    @if (Auth::check())
+        <base href="/dashboard">
+    @else
+        <base href="/">
+    @endif
 
     <!-- Google Fonts -->
     <link
@@ -206,6 +216,11 @@
     {{-- jquery --}}
     {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
     {{-- li active --}}
+
+    {{-- <script>
+        new WOW().init();
+    </script> --}}
+
 
 
     <!-- Bootstrap JS and Popper.js (required for Bootstrap 5) -->
