@@ -9,7 +9,7 @@
                     <div class="col-lg-4 col-md-2 col-12">
                         <!-- Start Logo -->
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <h3 class="text-primary">E-<span class="text-dark">Konsulta </span><i
                                         class="fa fa fa-stethoscope"></i>
                                 </h3>
