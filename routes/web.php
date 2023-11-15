@@ -62,6 +62,10 @@ Route::middleware('auth')->group(function () {
         Route::get('doctor-patient', [DoctorController::class, 'doctorPatient'])->name('doctor-patient');
         Route::get('patient-info', [DoctorController::class, 'patientInfo'])->name('patient-info');
         Route::post('update-patient', [DoctorController::class, 'updatePatient'])->name('update-patient');
+        Route::get('edit-sched', [DoctorController::class, 'editSched'])->name('edit-sched');
+        Route::post('update-sched', [DoctorController::class, 'updateSched'])->name('update-sched');
+        Route::get('delete-sched', [DoctorController::class, 'deleteSched'])->name('delete-sched');
+        Route::get('get-patient', [DoctorController::class, 'getPatient'])->name('get-patient');
     });
 
     Route::post('add-patient', [UserController::class, 'addPatient'])->name('add-patient');

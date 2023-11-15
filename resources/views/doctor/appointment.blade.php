@@ -1,17 +1,31 @@
 @extends('layouts.doctor')
 @section('content')
-    @php
-        $appointment = App\Models\Appointment::where('doctor', Auth::user()->name)->get();
-    @endphp
+
     <x-ajax-message />
+    <div class="d-flex justify-content-between ">
+        <div>
+            <input type="text" value="{{ $app_name }}" name="app_name" id="app_name" placeholder="Search patient"
+                class="form-control">
+        </div>
+        <div>
+            <input type="date" value="{{ $app_date }}" name="app_date" id="app_date" placeholder="Search Date"
+                class="form-control">
+        </div>
+    </div>
     <div id="data">
         @if ($appointment->isEmpty())
-            <p>No appointment available.</p>
+            <p class="mt-5 text-danger">No appointment available.</p>
         @else
-            <div class="table-responsive mt-5">
+            <select class="rounded mb-1 p-1 my-5" name="page_select" id="page_select">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <tr class="text-center">
+                        <tr class="text-center bg-secondary  text-white">
                             <th>Name</th>
                             <th>Date</th>
                             <th>Time</th>
@@ -31,7 +45,15 @@
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->phone }}</td>
                                 {{-- <td>{{ $item->message }}</td> --}}
-                                <td>{{ $item->status }}</td>
+                                <td>
+                                    @if ($item->status == 'cancelled')
+                                        <p class="text-warning">{{ $item->status }}</p>
+                                    @elseif($item->status == 'declined')
+                                        <p class="text-danger">{{ $item->status }}</p>
+                                    @else
+                                        <p class="text-success">{{ $item->status }}</p>
+                                    @endif
+                                </td>
                                 <td>
                                     @if ($item->status == 'pending')
                                         <button value="{{ $item->id }}" class="bn632-hover bn26 approve-btn"
@@ -41,11 +63,11 @@
                                             style="font-size: 14px"><i class="fa fa-thumbs-down"
                                                 id="decline-icon"></i>decline</button>
                                     @elseif($item->status == 'cancelled')
-                                        <p>cancelled</p>
+                                        <p><i class="fa fa-exclamation-triangle  text-muted"></i></p>
                                     @elseif($item->status == 'declined')
-                                        <p>declined</p>
+                                        <p><i class="fa fa-thumbs-down text-muted"></i></p>
                                     @else
-                                        <p>approved</p>
+                                        <p><i class="fa fa-thumbs-up  text-muted"></i></p>
                                     @endif
                                 </td>
                             </tr>
@@ -53,7 +75,7 @@
                     </tbody>
                 </table>
             </div>
-            {{-- {{ $appointment->links() }} --}}
+            {{ $appointment->links('vendor.pagination.bootstrap-4') }}
         @endif
     </div>
 @endsection
@@ -61,71 +83,112 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            // approve
-            $('.approve-btn').on('click', function() {
-                var id = $(this).val();
-                // Find the icon within the button
-                var icon = $(this).find("#approve-icon");
-                // Remove existing classes and add new classes
-                icon.removeClass("fa-thumbs-up").addClass("fa-spinner rotate");
-                console.log(id);
-                $.ajax({
-                    url: "/approve/" + id,
-                    data: {
-                        id: id
-                    },
-                    type: "get",
-                    success: function(result) {
-                        if (result.success) {
-                            $("#success-modal").modal("show");
-                            $("#success-message").html(result.success);
-                            // If you want to hide the modal after a successful submission, uncomment the following line
-                            $("#data").load(
-                                window.location.href + " #data"
-                            );
-                        } else {
-                            $("#error-modal").modal("show");
-                            $("#error-message").html(result.error);
+            toggleAction();
+
+            function toggleAction() {
+                // approve
+                $('.approve-btn').on('click', function() {
+                    var id = $(this).val();
+                    // Find the icon within the button
+                    var icon = $(this).find("#approve-icon");
+                    // Remove existing classes and add new classes
+                    icon.removeClass("fa-thumbs-up").addClass("fa-spinner rotate");
+                    console.log(id);
+                    $.ajax({
+                        url: "/approve/" + id,
+                        data: {
+                            id: id
+                        },
+                        type: "get",
+                        success: function(result) {
+                            if (result.success) {
+                                $("#success-modal").modal("show");
+                                $("#success-message").html(result.success);
+                                // If you want to hide the modal after a successful submission, uncomment the following line
+                                $("#data").load(
+                                    window.location.href + " #data",
+                                    function() {
+                                        toggleAction();
+                                    }
+                                );
+                            } else {
+                                $("#error-modal").modal("show");
+                                $("#error-message").html(result.error);
+                            }
+                            // If you want to hide a success message after 1.5 seconds, uncomment the following lines
+                            setTimeout(function() {
+                                $("#success-modal").modal("hide");
+                                $("#error-modal").modal("hide");
+                            }, 2000);
                         }
-                        // If you want to hide a success message after 1.5 seconds, uncomment the following lines
-                        setTimeout(function() {
-                            $("#success-modal").modal("hide");
-                            $("#error-modal").modal("hide");
-                        }, 2000);
+                    })
+                })
+                // decline
+                $('.decline-btn').on('click', function() {
+                    var id = $(this).val();
+                    // Find the icon within the button
+                    var icon = $(this).find("#decline-icon");
+                    // Remove existing classes and add new classes
+                    icon.removeClass("fa-thumbs-down").addClass("fa-spinner rotate");
+                    console.log(id);
+                    $.ajax({
+                        url: "/decline/" + id,
+                        data: {
+                            id: id
+                        },
+                        type: "get",
+                        success: function(result) {
+                            if (result.success) {
+                                $("#success-modal").modal("show");
+                                $("#success-message").html(result.success);
+                                // If you want to hide the modal after a successful submission, uncomment the following line
+                                $("#data").load(
+                                    window.location.href + " #data",
+                                    function() {
+                                        toggleAction();
+                                    }
+                                );
+                            } else {
+                                $("#error-modal").modal("show");
+                                $("#error-message").html(result.error);
+                            }
+                            // If you want to hide a success message after 1.5 seconds, uncomment the following lines
+                            setTimeout(function() {
+                                $("#success-modal").modal("hide");
+                                $("#error-modal").modal("hide");
+                            }, 2000);
+                        }
+                    })
+                })
+            }
+
+            $('#app_name').on('keyup', function() {
+                var app_name = $(this).val();
+                console.log(app_name);
+                $.ajax({
+                    url: '{{ route('doctor-appointment') }}',
+                    data: {
+                        app_name: app_name
+                    },
+                    method: 'get',
+                    success: function(response) {
+                        $('#data').html($(response).find('#data')
+                            .html()); // Replace content of #table-data2
                     }
                 })
             })
-            // decline
-            $('.decline-btn').on('click', function() {
-                var id = $(this).val();
-                // Find the icon within the button
-                var icon = $(this).find("#decline-icon");
-                // Remove existing classes and add new classes
-                icon.removeClass("fa-thumbs-down").addClass("fa-spinner rotate");
-                console.log(id);
+            $('#app_date').on('change', function() {
+                var app_date = $(this).val();
+                console.log(app_date);
                 $.ajax({
-                    url: "/decline/" + id,
+                    url: '{{ route('doctor-appointment') }}',
                     data: {
-                        id: id
+                        app_date: app_date
                     },
-                    type: "get",
-                    success: function(result) {
-                        if (result.success) {
-                            $("#success-modal").modal("show");
-                            $("#success-message").html(result.success);
-                            // If you want to hide the modal after a successful submission, uncomment the following line
-                            $("#data").load(
-                                window.location.href + " #data"
-                            );
-                        } else {
-                            $("#error-modal").modal("show");
-                            $("#error-message").html(result.error);
-                        }
-                        // If you want to hide a success message after 1.5 seconds, uncomment the following lines
-                        setTimeout(function() {
-                            $("#success-modal").modal("hide");
-                            $("#error-modal").modal("hide");
-                        }, 2000);
+                    method: 'get',
+                    success: function(response) {
+                        $('#data').html($(response).find('#data')
+                            .html()); // Replace content of #table-data2
                     }
                 })
             })

@@ -27,6 +27,7 @@ class PatientRequest extends FormRequest
             'sex' => 'required',
             'address' => 'required',
             'birthday' => 'required',
+            'phone' => 'min:11',
 
         ];
     }

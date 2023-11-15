@@ -17,6 +17,10 @@
                         <input autofocus placeholder="Address" type="text" name="address" class="form-control"
                             id="address">
                     </div>
+                    <div class="mb-3">
+                        <input autofocus placeholder="Phone" type="number" name="phone" class="form-control"
+                            id="phone">
+                    </div>
                     <div class="mb-3 row">
 
 

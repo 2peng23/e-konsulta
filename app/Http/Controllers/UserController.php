@@ -88,6 +88,7 @@ class UserController extends Controller
         }
         $patient = new Patient();
         $patient->name = $request->name;
+        $patient->phone = $request->phone;
         $patient->address = $request->address;
         $patient->age = $request->age;
         $patient->sex = $request->sex;
