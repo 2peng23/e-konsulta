@@ -14,7 +14,7 @@
                     <p>{{ $sched }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" href="{{ route('doctor-schedule') }}">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <p>{{ $appoint }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" href="/doctor-appointment">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -44,10 +44,13 @@
                         <i class="fa fa-user-md"></i>
                         Patient
                     </div>
-                    <p>0</p>
+                    @php
+                        $patient = App\Models\Patient::count();
+                    @endphp
+                    <p>{{ $patient }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="/doctor">View Details</a>
+                    <a class="small text-white stretched-link" href="/doctor-patient">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

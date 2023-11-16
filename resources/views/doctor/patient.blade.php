@@ -167,6 +167,12 @@
                             $('#updated_at').html('Last visit: ' + formattedUpdatedAt);
                             var diagnosis = data.diagnosis;
                             var diagnosisArray = JSON.parse(diagnosis);
+
+                            // Filter out null values from the array
+                            diagnosisArray = diagnosisArray.filter(function(element) {
+                                return element !== null;
+                            });
+
                             var container = $('#diagnosis-data');
 
                             // Reverse the array to display from last index to 0
@@ -178,6 +184,7 @@
                                     .text(element);
                                 container.append(pTag);
                             });
+
                             $('#info-canvas').on('hidden.bs.offcanvas', function() {
                                 // Reset data when the offcanvas is hidden
                                 resetInfoCanvas();
@@ -201,6 +208,7 @@
                         success: function(res) {
                             var patient = res.patient;
                             console.log(patient);
+                            console.log(patient.father_name);
                             $('#edit-name').val(patient.name);
                             $('#edit-address').val(patient.address);
                             $('#edit-phone').val(patient.phone);

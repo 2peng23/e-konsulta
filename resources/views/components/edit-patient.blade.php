@@ -13,7 +13,7 @@
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3">
                             <input autofocus placeholder="Patient's Full Name" type="text" name="name"
-                                class="form-control" id="edit-name">
+                                class="form-control" id="edit-name" readonly>
                         </div>
                         <div class="mb-3">
                             <input autofocus placeholder="Address" type="text" name="address" class="form-control"
@@ -54,20 +54,20 @@
 
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="father_name" placeholder="Father's Name (optional)"
-                                class="form-control">
+                            <input type="text" name="father_name" id="edit-father_name"
+                                placeholder="Father's Name (optional)" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="father_occupation" placeholder="Father's Occupation (optional)"
-                                class="form-control">
+                            <input type="text" id="edit-father_occupation" name="father_occupation"
+                                placeholder="Father's Occupation (optional)" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="mother_name" placeholder="Mother's Name (optional)"
-                                class="form-control">
+                            <input type="text" name="mother_name" id="edit-mother_name"
+                                placeholder="Mother's Name (optional)" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="mother_occupation" placeholder="Mother's Occupation (optional)"
-                                class="form-control">
+                            <input type="text" id="edit-mother_occupation" name="mother_occupation"
+                                placeholder="Mother's Occupation (optional)" class="form-control">
                         </div>
                         <div class="d-flex justify-content-end ">
 
@@ -77,8 +77,8 @@
                     <div class="page-2" style="display: none">
                         <div class="row">
                             <div class="mb-3 col-6">
-                                <input autofocus placeholder="Weight" type="text" name="weight" class="form-control"
-                                    id="edit-weight">
+                                <input autofocus placeholder="Weight" type="text" name="weight"
+                                    class="form-control" id="edit-weight">
                             </div>
                             <div class="mb-3 col-6">
                                 <input autofocus placeholder="Height" type="text" name="height"
