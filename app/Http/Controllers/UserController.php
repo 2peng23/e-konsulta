@@ -115,4 +115,12 @@ class UserController extends Controller
             'error' => 'Appointment cancelled'
         ]);
     }
+    public function getPatientInfo(Request $request)
+    {
+        $id = $request->id;
+        $appoint = Appointment::where('id', $id)->first();
+        return response()->json([
+            'name' => $appoint->name,
+        ]);
+    }
 }

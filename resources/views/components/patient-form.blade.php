@@ -11,14 +11,14 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <input autofocus placeholder="Patient's Full Name" type="text" name="name"
-                            class="form-control" id="name">
+                            class="form-control p-1" id="patient_name" readonly>
                     </div>
                     <div class="mb-3">
-                        <input autofocus placeholder="Address" type="text" name="address" class="form-control"
+                        <input autofocus placeholder="Address" type="text" name="address" class="form-control p-1"
                             id="address">
                     </div>
                     <div class="mb-3">
-                        <input autofocus placeholder="Phone" type="number" name="phone" class="form-control"
+                        <input autofocus placeholder="Phone" type="number" name="phone" class="form-control p-1"
                             id="phone">
                     </div>
                     <div class="mb-3 row">
@@ -42,34 +42,35 @@
                     </div>
                     <div class="mb-3 row">
                         <div class="col-6">
-                            <input autofocus placeholder="Age" type="number" name="age" class="form-control"
+                            <input autofocus placeholder="Age" type="number" name="age" class="form-control p-1"
                                 id="age">
                         </div>
                         <div class="col-6">
-                            <input autofocus placeholder="Birthday" type="date" name="birthday" class="form-control"
-                                id="birthday" max="<?php echo date('Y-m-d'); ?>">
+                            <input autofocus placeholder="Birthday" type="date" name="birthday"
+                                class="form-control p-1" id="birthday" max="<?php echo date('Y-m-d'); ?>">
                         </div>
 
                     </div>
                     <div class="mb-3">
                         <input type="text" name="father_name" placeholder="Father's Name (optional)"
-                            class="form-control">
+                            class="form-control p-1">
                     </div>
                     <div class="mb-3">
                         <input type="text" name="father_occupation" placeholder="Father's Occupation (optional)"
-                            class="form-control">
+                            class="form-control p-1">
                     </div>
                     <div class="mb-3">
                         <input type="text" name="mother_name" placeholder="Mother's Name (optional)"
-                            class="form-control">
+                            class="form-control p-1">
                     </div>
 
                     <div class="mb-3">
                         <input type="text" name="mother_occupation" placeholder="Mother's Occupation (optional)"
-                            class="form-control">
+                            class="form-control p-1">
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="referred" placeholder="Referred by (optional)" class="form-control">
+                        <input type="text" name="referred" placeholder="Referred by (optional)"
+                            class="form-control p-1">
                     </div>
                 </div>
                 <div class="modal-footer">

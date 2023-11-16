@@ -16,7 +16,7 @@
                     <p>{{ $app }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" href="{{ route('appointment') }}">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -28,10 +28,13 @@
                         <i class="fa fa-users"></i>
                         Patients
                     </div>
-                    <p>0</p>
+                    @php
+                        $patient = App\Models\Patient::count();
+                    @endphp
+                    <p>{{ $patient }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" href="/patient">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -61,12 +64,15 @@
                 <div class="card-body d-flex justify-content-between ">
                     <div>
                         <i class="fa fa-user-circle"></i>
-                        Staff
+                        Account
                     </div>
-                    <p>0</p>
+                    @php
+                        $account = App\Models\User::where('usertype', 2)->count();
+                    @endphp
+                    <p>{{ $account }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" href="{{ route('account') }}">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

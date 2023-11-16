@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
         Route::get('edit-user/{id}', [AdminControler::class, 'editUser'])->name('edit-user');
         Route::post('delete-account', [AdminControler::class, 'deleteAccount'])->name('delete-account');
         Route::post('update-account', [AdminControler::class, 'updateAccount'])->name('update-account');
+        Route::get('info-patient', [AdminControler::class, 'infoPatient'])->name('info-pattient');
     });
 
     Route::middleware('user')->group(function () {
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::post('create-appointment', [UserController::class, 'createAppointment'])->name('create-appointment');
         Route::get('my-appointment', [UserController::class, 'myAppointment'])->name('my-appointment');
         Route::get('cancel-appointment', [UserController::class, 'cancelAppointment'])->name('cancel-appointment');
+        Route::get('get-patient-info', [UserController::class, 'getPatientInfo'])->name('get-patient-info');
     });
 
     Route::middleware('doctor')->group(function () {

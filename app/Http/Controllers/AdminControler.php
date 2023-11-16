@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DoctorRequest;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\Patient;
+use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,13 +25,49 @@ class AdminControler extends Controller
     {
         return view('admin.staff');
     }
-    public function patient()
+    public function patient(Request $request)
     {
-        return view('admin.patient');
+        $patient = DB::table('patients')->orderBy('updated_at', 'desc');
+        // Retrieve input parameters
+        $name = $request->input('patient_name');
+        $date = $request->input('patient_date');
+        $page = $request->input('page_select', 5); // Set a default value for page if not provided
+        // Apply filters
+        if ($name) {
+            $patient->where('name', 'like', "%{$name}%");
+        }
+
+        if ($date) {
+            $patient->whereDate('updated_at', $date);
+        }
+        // Paginate the results
+        $patient = $patient->paginate($page);
+
+        // Append parameters to pagination links
+        $patient->appends(['patient_name' => $name, 'patient_date' => $date, 'page_select' => $page]);
+        return view('admin.patient', compact('patient', 'name', 'date', 'page'));
     }
-    public function appointment()
+    public function appointment(Request $request)
     {
-        return view('admin.appointment');
+        $appointment = DB::table('appointments')->orderBy('updated_at', 'desc');
+        // Retrieve input parameters
+        $name = $request->input('appointment_name');
+        $date = $request->input('appointment_date');
+        $page = $request->input('page_select', 5); // Set a default value for page if not provided
+        // Apply filters
+        if ($name) {
+            $appointment->where('name', 'like', "%{$name}%");
+        }
+
+        if ($date) {
+            $appointment->whereDate('date', $date);
+        }
+        // Paginate the results
+        $appointment = $appointment->paginate($page);
+
+        // Append parameters to pagination links
+        $appointment->appends(['appointment_name' => $name, 'appointment_date' => $date, 'page_select' => $page]);
+        return view('admin.appointment', compact('appointment', 'name', 'date', 'page'));
     }
     public function report()
     {
@@ -77,10 +116,20 @@ class AdminControler extends Controller
                 $user->save();
             }
             // change the appointment doctor
-            $appointment = Appointment::where('doctor', $doctor->name)->first();
+            $appointment = Appointment::where('doctor', $doctor->name)->get();
             if ($appointment) {
-                $appointment->doctor = $request->name;
-                $appointment->save();
+                foreach ($appointment as $app) {
+                    $app->doctor = $request->name;
+                    $app->save();
+                }
+            }
+            // change the schedule
+            $schedule = Schedule::whereName($doctor->name)->get();
+            if ($schedule) {
+                foreach ($schedule as $sched) {
+                    $sched->name = $request->name;
+                    $sched->save();
+                }
             }
         }
 
@@ -187,7 +236,7 @@ class AdminControler extends Controller
     {
         $id = $request->admin_id;
         $user = User::find($id);
-        // Check if the user with the given ID exists
+        // Check if the user with the given ID exists 
         // if (!$user) {
         //     return response()->json([
         //         'error' => 'User not found!'
@@ -216,5 +265,13 @@ class AdminControler extends Controller
                 'error' => 'Password error!'
             ]);
         }
+    }
+    public function infoPatient(Request $request)
+    {
+        $id = $request->id;
+        $patient = Patient::find($id);
+        return response()->json([
+            'patient' => $patient
+        ]);
     }
 }

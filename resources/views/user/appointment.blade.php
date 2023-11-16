@@ -84,6 +84,18 @@
                 var id = $(this).val();
                 console.log(id);
                 $('#patient-modal').modal("show");
+                // $('#patient_name').val('Hello')
+                $.ajax({
+                    url: "/get-patient-info/",
+                    data: {
+                        id: id
+                    },
+                    type: "get",
+                    success: function(res) {
+                        console.log(res);
+                        $('#patient_name').val(res.name)
+                    }
+                })
             })
             $("#add-patient-form").submit(function(e) {
                 e.preventDefault();
