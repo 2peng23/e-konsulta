@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class AdminControler extends Controller
 {
@@ -165,5 +166,55 @@ class AdminControler extends Controller
         return response()->json([
             'user' => $user
         ]);
+    }
+    public function updateAccount(Request $request)
+    {
+        $request->validate([
+            'password' => 'min:8',
+        ]);
+        $id = $request->id;
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->usertype = $request->usertype;
+        $user->save();
+        return response()->json([
+            'success' => 'Account updated!'
+        ]);
+    }
+    public function deleteAccount(Request $request)
+    {
+        $id = $request->admin_id;
+        $user = User::find($id);
+        // Check if the user with the given ID exists
+        // if (!$user) {
+        //     return response()->json([
+        //         'error' => 'User not found!'
+        //     ]);
+        // }
+
+        $adminPassword = $request->admin_password;
+
+        // Use Hash::check() to compare hashed passwords
+        if (Hash::check($adminPassword, Auth::user()->password)) {
+            // Check if the authenticated user is an admin and authorized
+
+            if (Auth::user()->usertype == 1) {
+                $user->delete();
+
+                return response()->json([
+                    'success' => 'Account deleted!'
+                ]);
+            } else {
+                return response()->json([
+                    'error' => 'Unauthorized to delete account!'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'error' => 'Password error!'
+            ]);
+        }
     }
 }

@@ -11,7 +11,7 @@
                     <p>No doctor available.</p>
                 </div>
             @else
-                <form action="{{ route('add-account') }}" method="POST" id="edit-doctor-account">
+                <form action="{{ route('update-account') }}" method="POST" id="update-account">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="password1" class="form-label">Password</label>
-                            <input type="password" required name="password" class="form-control" id="password1">
+                            <input type="password" name="password" class="form-control" id="password1">
                         </div>
                     </div>
                     <input type="text" name="usertype" value="2" hidden>

@@ -9,6 +9,8 @@
     <x-create-account />
     <x-ajax-message />
     <x-edit-account :doctor=$doctor />
+    <x-admin-password />
+
     <div id="dataa">
         @if ($user->isEmpty())
             <p>No Accounts available.</p>
@@ -204,7 +206,7 @@
             });
         });
 
-        // edit doctor account
+        // edit account
         $(document).on("click", ".edit-btn", function() {
             var item_id = $(this).val();
             console.log(item_id);
@@ -222,6 +224,100 @@
                 },
             });
         });
+        // delete account
+        $(document).on('click', '.delete-btn', function() {
+            var id = $(this).val();
+            console.log(id);
+            $("#admin-password-modal").modal("show");
+            $("#admin_id").val(id);
+        })
+        // update account
+        $('#delete-account').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('delete-account') }}",
+                data: new FormData(this),
+                method: "post",
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    console.log(result);
+                    if (result.success) {
+                        $("#delete-account")[0].reset();
+                        $("#success-modal").modal("show");
+                        $("#success-message").html(result.success);
+                        // If you want to hide the modal after a successful submission, uncomment the following line
+                        $("#admin-password-modal").modal("hide");
+                        $("#dataa").load(window.location.href + " #dataa");
+                    } else {
+                        $("#delete-account")[0].reset();
+                        $("#error-modal").modal("show");
+                        $("#error-message").html(result.error);
+                    }
+                    // If you want to hide a success message after 1.5 seconds, uncomment the following lines
+                    setTimeout(function() {
+                        $("#success-modal").modal("hide");
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+                error: function(xhr, status, error) {
+                    // If you want to handle errors and display error messages, uncomment the following lines
+                    var errors = xhr.responseJSON.errors;
+                    var errorString = "";
+                    $.each(errors, function(key, value) {
+                        errorString += value + "<br>";
+                    });
+                    $("#error-modal").modal("show");
+                    $("#error-message").html(errorString);
+                    setTimeout(function() {
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+            });
+        })
+        // update account
+        $('#update-account').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('update-account') }}",
+                data: new FormData(this),
+                method: "POST",
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    console.log(result);
+                    if (result.success) {
+                        $("#update-account")[0].reset();
+                        $("#success-modal").modal("show");
+                        $("#success-message").html(result.success);
+                        // If you want to hide the modal after a successful submission, uncomment the following line
+                        $("#edit-doctor-modal").modal("hide");
+                        $("#dataa").load(window.location.href + " #dataa");
+                    } else {
+                        $("#error-modal").modal("show");
+                        $("#error-message").html(result.error);
+                    }
+                    // If you want to hide a success message after 1.5 seconds, uncomment the following lines
+                    setTimeout(function() {
+                        $("#success-modal").modal("hide");
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+                error: function(xhr, status, error) {
+                    // If you want to handle errors and display error messages, uncomment the following lines
+                    var errors = xhr.responseJSON.errors;
+                    var errorString = "";
+                    $.each(errors, function(key, value) {
+                        errorString += value + "<br>";
+                    });
+                    $("#error-modal").modal("show");
+                    $("#error-message").html(errorString);
+                    setTimeout(function() {
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+            });
+        })
         // select account to create
         var doctorBtn = document.getElementsByClassName('btn-doctor')[0];
         var staffBtn = document.getElementsByClassName('btn-staff')[0];

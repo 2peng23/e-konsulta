@@ -25,8 +25,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center">
-                    @foreach ($appointment as $item)
+                @foreach ($appointment as $item)
+                    <tr class="text-center">
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->phone }}</td>
@@ -34,8 +34,8 @@
                         <td>{{ $item->time }}</td>
                         <td>{{ $item->doctor }}</td>
                         <td>{{ $item->status }}</td>
-                    @endforeach
-                </tr>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

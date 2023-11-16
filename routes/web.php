@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
         Route::get('account', [AdminControler::class, 'account'])->name('account');
         Route::post('add-account', [AdminControler::class, 'addAccount'])->name('add-account');
         Route::get('edit-user/{id}', [AdminControler::class, 'editUser'])->name('edit-user');
+        Route::post('delete-account', [AdminControler::class, 'deleteAccount'])->name('delete-account');
+        Route::post('update-account', [AdminControler::class, 'updateAccount'])->name('update-account');
     });
 
     Route::middleware('user')->group(function () {
