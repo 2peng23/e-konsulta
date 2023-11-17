@@ -34,14 +34,14 @@
                                     </li>
                                     @if (Auth::check())
                                         <li
-                                            class="nav-item dropdown {{ request()->routeIs('my-appointment', 'my-doctor') ? 'active' : '' }}">
+                                            class="nav-item dropdown {{ request()->routeIs('my-appointment', '#doctor-section', 'make-appointment') ? 'active' : '' }}">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
                                                 Appointment
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item {{ request()->routeIs('my-doctor') ? 'active text-white' : 'text-dark' }}"
+                                                <a class="dropdown-item {{ request()->routeIs('#doctor-section') ? 'active text-white' : 'text-dark' }}"
                                                     href="#doctor-section">Doctor</a>
                                                 <a class="dropdown-item {{ request()->routeIs('my-appointment') ? 'active text-white' : 'text-dark' }}"
                                                     href="{{ route('my-appointment') }}">My Appointment</a>

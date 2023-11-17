@@ -11,7 +11,7 @@
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
                     aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa fa-hospital text-primary"></i></div>
-                    Healthcare Providers
+                    Healthcare
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse {{ request()->routeIs(['doctor', 'staff']) ? 'show' : '' }}" id="collapseLayouts"
@@ -19,8 +19,8 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{ request()->routeIs('doctor') ? 'active' : '' }}"
                             href="{{ route('doctor') }}">Doctor</a>
-                        <a class="nav-link {{ request()->routeIs('staff') ? 'active' : '' }}"
-                            href="{{ route('staff') }}">Staff</a>
+                        <a class="nav-link {{ request()->routeIs('package') ? 'active' : '' }}"
+                            href="{{ route('package') }}">Package</a>
                     </nav>
                 </div>
                 <a class="nav-link {{ request()->routeIs('patient') ? 'active' : '' }}" href="{{ route('patient') }}">

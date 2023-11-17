@@ -148,12 +148,11 @@
                     <li class="d-flex justify-content-evenly align-items-center">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a class="dropdown-item text-primary" href="#" data-toggle="modal"
+                            <a class="dropdown-item text-white bn632-hover bn26" href="#" data-toggle="modal"
                                 data-target="#logoutModal" :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
+                                <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </form>
                     </li>

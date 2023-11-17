@@ -21,9 +21,9 @@ class AdminControler extends Controller
         $doctor = Doctor::all();
         return view('admin.doctor', compact('doctor'));
     }
-    public function staff()
+    public function package()
     {
-        return view('admin.staff');
+        return view('admin.package');
     }
     public function patient(Request $request)
     {

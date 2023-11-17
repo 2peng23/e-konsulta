@@ -32,7 +32,7 @@ Route::get('dashboard', [HomeController::class, 'dashboard'])->middleware('auth'
 Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('doctor', [AdminControler::class, 'doctor'])->name('doctor');
-        Route::get('staff', [AdminControler::class, 'staff'])->name('staff');
+        Route::get('package', [AdminControler::class, 'package'])->name('package');
         Route::get('patient', [AdminControler::class, 'patient'])->name('patient');
         Route::get('appointment', [AdminControler::class, 'appointment'])->name('appointment');
         Route::get('report', [AdminControler::class, 'report'])->name('report');
