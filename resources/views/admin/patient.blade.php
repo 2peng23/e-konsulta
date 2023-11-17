@@ -6,7 +6,8 @@
                 id="patient_name">
         </div>
         <div>
-            <input type="date" value="{{ $page }}" name="patient_date" id="patient_date" class="form-control">
+            <input type="text" value="{{ $date }}" name="patient_date" id="patient_date" class="form-control">
+
         </div>
     </div>
     <div class="data">
@@ -87,36 +88,50 @@
 
 @endsection
 @section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script>
-        // search by name
-        $(document).on('keyup', '#patient_name', function() {
-            var patient_name = $(this).val();
-            $.ajax({
-                url: "{{ route('patient') }}",
-                data: {
-                    patient_name: patient_name
-                },
-                type: "get",
-                success: function(res) {
-                    $('.data').html($(res).find('.data').html())
-                }
+        $(document).ready(function() {
+
+            // search by name
+            $(document).on('keyup', '#patient_name', function() {
+                var patient_name = $(this).val();
+                $.ajax({
+                    url: "{{ route('patient') }}",
+                    data: {
+                        patient_name: patient_name
+                    },
+                    type: "get",
+                    success: function(res) {
+                        $('.data').html($(res).find('.data').html())
+                    }
+                })
             })
+            // search by date
+            $(document).on('change', '#patient_date', function() {
+                var patient_date = $(this).val();
+                console.log(patient_date);
+                $.ajax({
+                    url: "{{ route('patient') }}",
+                    data: {
+                        patient_date: patient_date
+                    },
+                    type: "get",
+                    success: function(res) {
+                        $('.data').html($(res).find('.data').html())
+                    }
+                })
+            });
         })
-        // search by date
-        $(document).on('change', '#patient_date', function() {
-            var patient_date = $(this).val();
-            console.log(patient_date);
-            $.ajax({
-                url: "{{ route('patient') }}",
-                data: {
-                    patient_date: patient_date
-                },
-                type: "get",
-                success: function(res) {
-                    $('.data').html($(res).find('.data').html())
-                }
-            })
-        })
+        // date
+        $('input[name="patient_date"]').daterangepicker({
+            opens: 'left'
+        });
+
+        $('input[name="patient_date"]').on('apply.daterangepicker', function(ev, picker) {});
+
         // page
         $(document).on('change', '#page_select', function() {
             var page_select = $(this).val();

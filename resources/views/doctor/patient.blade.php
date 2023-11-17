@@ -6,7 +6,7 @@
                 placeholder="Search name">
         </div>
         <div>
-            <input type="date" value="{{ $date }}" name="patient_date" id="patient_date" class="form-control">
+            <input type="text" value="{{ $date }}" name="patient_date" id="patient_date" class="form-control">
         </div>
     </div>
     <div class="data mt-5">
@@ -20,7 +20,7 @@
                 <option value="20" {{ $page == 20 ? 'selected' : '' }}>20</option>
             </select>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover ">
                     <thead>
                         <tr class="text-center bg-secondary text-white">
                             <th>Name</th>
@@ -84,6 +84,10 @@
     <x-ajax-message />
 @endsection
 @section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script>
         // toggleAction();
 
@@ -302,60 +306,67 @@
         }
         // togglePage();
 
-        // function togglePage() {
-        // page
-        $(document).on('change', '#page_select', function() {
-            var page_select = $(this).val();
-            console.log(page_select);
-            $.ajax({
-                url: "{{ route('doctor-patient') }}",
-                method: 'get',
-                data: {
-                    page_select: page_select
-                },
-                success: function(response) {
-                    $('.data').html($(response).find('.data')
-                        .html()); // Replace content of #table-data2
-                    // togglePage();
-                    // toggleAction();
-                }
+        $(document).ready(function() {
+            // page
+            $(document).on('change', '#page_select', function() {
+                var page_select = $(this).val();
+                console.log(page_select);
+                $.ajax({
+                    url: "{{ route('doctor-patient') }}",
+                    method: 'get',
+                    data: {
+                        page_select: page_select
+                    },
+                    success: function(response) {
+                        $('.data').html($(response).find('.data')
+                            .html()); // Replace content of #table-data2
+                        // togglePage();
+                        // toggleAction();
+                    }
+                })
+            })
+            // name
+            $(document).on('keyup', '#patient_name', function() {
+                var patient_name = $(this).val();
+                $.ajax({
+                    url: "{{ route('doctor-patient') }}",
+                    method: 'get',
+                    data: {
+                        patient_name: patient_name
+                    },
+                    success: function(response) {
+                        $('.data').html($(response).find('.data')
+                            .html()); // Replace content of #table-data2
+                        // togglePage();
+                        // toggleAction();
+                    }
+                })
+            })
+            // date
+            $(document).on('change', '#patient_date', function() {
+                var patient_date = $(this).val();
+                console.log(patient_date);
+                $.ajax({
+                    url: "{{ route('doctor-patient') }}",
+                    data: {
+                        patient_date: patient_date
+                    },
+                    method: 'get',
+                    success: function(response) {
+                        $('.data').html($(response).find('.data')
+                            .html()); // Replace content of .table
+                        // togglePage();
+                        // toggleAction();
+                    }
+                })
             })
         })
-        // name
-        $(document).on('keyup', '#patient_name', function() {
-            var patient_name = $(this).val();
-            $.ajax({
-                url: "{{ route('doctor-patient') }}",
-                method: 'get',
-                data: {
-                    patient_name: patient_name
-                },
-                success: function(response) {
-                    $('.data').html($(response).find('.data')
-                        .html()); // Replace content of #table-data2
-                    // togglePage();
-                    // toggleAction();
-                }
-            })
-        })
+
         // date
-        $(document).on('change', '#patient_date', function() {
-            var patient_date = $(this).val();
-            console.log(patient_date);
-            $.ajax({
-                url: "{{ route('doctor-patient') }}",
-                data: {
-                    patient_date: patient_date
-                },
-                method: 'get',
-                success: function(response) {
-                    $('.data').html($(response).find('.data')
-                        .html()); // Replace content of .table
-                    // togglePage();
-                    // toggleAction();
-                }
-            })
-        })
-        // }
+        $('input[name="patient_date"]').daterangepicker({
+            opens: 'left'
+        });
+
+        $('input[name="patient_date"]').on('apply.daterangepicker', function(ev, picker) {});
     </script>
 @endsection

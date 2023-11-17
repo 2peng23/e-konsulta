@@ -36,23 +36,29 @@ class DoctorController extends Controller
     }
     public function doctorAppointment(Request $request)
     {
-        $appointment = DB::table('appointments')->where('doctor', Auth::user()->name)->orderBy('updated_at', 'desc');
-        $app_name = $request->app_name;
-        $app_date = $request->app_date;
-        if ($app_name) {
-            $appointment = $appointment->where(function ($query) use ($app_name) {
-                $query->where('name', 'like', "%{$app_name}%");
-            });
+        $appointment = DB::table('appointments')->orderBy('updated_at', 'desc');
+        // Retrieve input parameters
+        $name = $request->input('app_name');
+        $date = $request->input('app_date');
+        $page = $request->input('page_select', 5); // Set a default value for page if not provided
+        // Apply filters
+        if ($name) {
+            $appointment->where('name', 'like', "%{$name}%");
         }
-        if ($app_date) {
-            $appointment = $appointment->where(function ($query) use ($app_date) {
-                $query->where('date', 'like', "%{$app_date}%");
-            });
+
+        // Search by Date Range
+        if ($date) {
+            $dateArray = explode(' - ', $date);
+            $start_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[0])->startOfDay();
+            $end_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[1])->endOfDay();
+            $appointment = $appointment->whereBetween('created_at', [$start_date, $end_date]);
         }
-        $appointment = $appointment->paginate(5);
-        $appointment->appends(['app_name' => $app_name]);
-        $appointment->appends(['app_date' => $app_date]);
-        return view('doctor.appointment', compact('appointment', 'app_name', 'app_date'));
+        // Paginate the results
+        $appointment = $appointment->paginate($page);
+
+        // Append parameters to pagination links
+        $appointment->appends(['appointment_name' => $name, 'appointment_date' => $date, 'page_select' => $page]);
+        return view('doctor.appointment', compact('appointment', 'name', 'date', 'page'));
     }
 
     public function approve($id)
@@ -146,8 +152,12 @@ class DoctorController extends Controller
             $patient->where('name', 'like', "%{$name}%");
         }
 
+        // Search by Date Range
         if ($date) {
-            $patient->whereDate('updated_at', $date);
+            $dateArray = explode(' - ', $date);
+            $start_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[0])->startOfDay();
+            $end_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[1])->endOfDay();
+            $patient = $patient->whereBetween('created_at', [$start_date, $end_date]);
         }
 
         // Paginate the results

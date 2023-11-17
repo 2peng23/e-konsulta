@@ -38,13 +38,13 @@
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
-                                                My Appointments
+                                                Appointment
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item {{ request()->routeIs('my-appointment') ? 'active text-white' : 'text-dark' }}"
-                                                    href="{{ route('my-appointment') }}">Appointment</a>
                                                 <a class="dropdown-item {{ request()->routeIs('my-doctor') ? 'active text-white' : 'text-dark' }}"
                                                     href="#doctor-section">Doctor</a>
+                                                <a class="dropdown-item {{ request()->routeIs('my-appointment') ? 'active text-white' : 'text-dark' }}"
+                                                    href="{{ route('my-appointment') }}">My Appointment</a>
                                             </div>
                                         </li>
                                     @else

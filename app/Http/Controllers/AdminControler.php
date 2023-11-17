@@ -37,8 +37,12 @@ class AdminControler extends Controller
             $patient->where('name', 'like', "%{$name}%");
         }
 
+        // Search by Date Range
         if ($date) {
-            $patient->whereDate('updated_at', $date);
+            $dateArray = explode(' - ', $date);
+            $start_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[0])->startOfDay();
+            $end_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[1])->endOfDay();
+            $patient = $patient->whereBetween('created_at', [$start_date, $end_date]);
         }
         // Paginate the results
         $patient = $patient->paginate($page);
@@ -59,8 +63,12 @@ class AdminControler extends Controller
             $appointment->where('name', 'like', "%{$name}%");
         }
 
+        // Search by Date Range
         if ($date) {
-            $appointment->whereDate('date', $date);
+            $dateArray = explode(' - ', $date);
+            $start_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[0])->startOfDay();
+            $end_date = \Carbon\Carbon::createFromFormat('m/d/Y', $dateArray[1])->endOfDay();
+            $appointment = $appointment->whereBetween('created_at', [$start_date, $end_date]);
         }
         // Paginate the results
         $appointment = $appointment->paginate($page);

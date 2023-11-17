@@ -4,26 +4,25 @@
     <x-ajax-message />
     <div class="d-flex justify-content-between ">
         <div>
-            <input type="text" value="{{ $app_name }}" name="app_name" id="app_name" placeholder="Search patient"
+            <input type="text" value="{{ $name }}" name="app_name" id="app_name" placeholder="Search patient"
                 class="form-control">
         </div>
         <div>
-            <input type="date" value="{{ $app_date }}" name="app_date" id="app_date" placeholder="Search Date"
-                class="form-control">
+            <input type="text" value="{{ $date }}" name="app_date" id="app_date" class="form-control">
         </div>
     </div>
     <div id="data">
         @if ($appointment->isEmpty())
             <p class="mt-5 text-danger">No appointment available.</p>
         @else
-            <select class="rounded mb-1 p-1 my-5" name="page_select" id="page_select">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
+            <select class="rounded mt-5 mb-2 p-1" name="page_select" id="page_select">
+                <option value="5" {{ $page == 5 ? 'selected' : '' }}>5</option>
+                <option value="10" {{ $page == 10 ? 'selected' : '' }}>10</option>
+                <option value="15" {{ $page == 15 ? 'selected' : '' }}>15</option>
+                <option value="20" {{ $page == 20 ? 'selected' : '' }}>20</option>
             </select>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover ">
                     <thead>
                         <tr class="text-center bg-secondary  text-white">
                             <th>Name</th>
@@ -81,6 +80,10 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script>
         $(document).ready(function() {
             toggleAction();
@@ -174,6 +177,7 @@
                     success: function(response) {
                         $('#data').html($(response).find('#data')
                             .html()); // Replace content of #table-data2
+                        toggleAction();
                     }
                 })
             })
@@ -189,9 +193,32 @@
                     success: function(response) {
                         $('#data').html($(response).find('#data')
                             .html()); // Replace content of #table-data2
+                        toggleAction();
                     }
                 })
             })
         })
+        // page
+        $(document).on('change', '#page_select', function() {
+            var page_select = $(this).val();
+            console.log(page_select);
+            $.ajax({
+                url: "{{ route('doctor-appointment') }}",
+                data: {
+                    page_select: page_select
+                },
+                type: "get",
+                success: function(res) {
+                    $('#data').html($(res).find('#data').html());
+                    toggleAction();
+                }
+            })
+        })
+        // date
+        $('input[name="app_date"]').daterangepicker({
+            opens: 'left'
+        });
+
+        $('input[name="app_date"]').on('apply.daterangepicker', function(ev, picker) {});
     </script>
 @endsection

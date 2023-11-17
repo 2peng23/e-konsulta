@@ -17,7 +17,7 @@
              <div class="col-lg-12 col-12">
                  <div class="owl-carousel portfolio-slider">
                      @foreach ($doctor as $item)
-                         <div class="">
+                         <div class="wow fadeInRight" data-wow-delay="0.5s" data-wow-duration="2s">
                              <img src="images/{{ $item->image }}" class="w-75" style="height: 280px" alt="#">
                              <div>
                                  <p style="font-weight: bold; font-size:20px">Dr. {{ $item->name }}</p>
@@ -26,13 +26,13 @@
                              @php
                                  $doctor = App\Models\Schedule::where('name', $item->name)->count();
                              @endphp
-                             @if ($doctor > 0)
-                                 <a @if (Auth::check()) href="{{ route('make-appointment', [$item->id, $item->name]) }}"
+                             {{-- @if ($doctor > 0) --}}
+                             <a @if (Auth::check()) href="{{ route('make-appointment', [$item->id, $item->name]) }}"
                                     @else
                                     href="/login" @endif
-                                     class="btn text-white">Make an appointment
-                                 </a>
-                             @endif
+                                 class="btn text-white">Make an appointment
+                             </a>
+                             {{-- @endif --}}
                          </div>
                      @endforeach
                  </div>
