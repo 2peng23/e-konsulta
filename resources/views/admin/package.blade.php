@@ -18,7 +18,7 @@
                 <div class="row">
                     @foreach ($package as $item)
                         <div class="col-lg-6 col-12 my-2">
-                            <div class="card shadow">
+                            <div class="card shadow table-responsive " style="max-height: 380px;">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between ">
                                         <h5 class="card-title">{{ $item->name }}</h5>
@@ -73,10 +73,13 @@
         @endif
     </div>
     <x-add-package />
+    <x-edit-package />
     <x-ajax-message />
+    <x-package-delete />
 @endsection
 @section('scripts')
     <script>
+        // add package
         $(document).on('click', '.btn-add', function() {
             $('#add-package-modal').modal('show');
             // Counter for dynamic ID generation
@@ -146,7 +149,7 @@
                 },
             });
         })
-
+        // delete inclusion
         $(document).on('click', '.delete-inc', function() {
             var id = $(this).val();
             var index = $(this).data('index');
@@ -175,6 +178,7 @@
                 },
             })
         });
+        // add inclusion
         $(document).on('submit', '#add-inclusion-form', function(e) {
             e.preventDefault();
             $.ajax({
@@ -190,6 +194,118 @@
                         $("#success-modal").modal("show");
                         $("#success-message").html(result.success);
                         // If you want to hide the modal after a successful submission, uncomment the following line
+                        $(".data").load(
+                            window.location.href + " .data"
+                        );
+                    } else {
+                        $("#error-modal").modal("show");
+                        $("#error-message").html(result.error);
+                    }
+                    // If you want to hide a success message after 1.5 seconds, uncomment the following lines
+                    setTimeout(function() {
+                        $("#success-modal").modal("hide");
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+                error: function(xhr, status, error) {
+                    // If you want to handle errors and display error messages, uncomment the following lines
+                    var errors = xhr.responseJSON.errors;
+                    var errorString = "";
+                    $.each(errors, function(key, value) {
+                        errorString += value + "<br>";
+                    });
+                    $("#error-modal").modal("show");
+                    $("#error-message").html(errorString);
+                    setTimeout(function() {
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+            });
+        })
+        // delete package
+        $(document).on('click', '.delete-package', function() {
+            $('#package-password-modal').modal('show');
+            var id = $(this).val();
+            $('#admin_id').val(id);
+        })
+        $(document).on('submit', '#delete-package', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('delete-package') }}",
+                data: new FormData(this),
+                method: "POST",
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    console.log(result);
+                    if (result.success) {
+                        $("#delete-package")[0].reset();
+                        $("#success-modal").modal("show");
+                        $("#success-message").html(result.success);
+                        // If you want to hide the modal after a successful submission, uncomment the following line
+                        $("#package-password-modal").modal("hide");
+                        $(".data").load(
+                            window.location.href + " .data"
+                        );
+                    } else {
+                        $("#error-modal").modal("show");
+                        $("#error-message").html(result.error);
+                    }
+                    // If you want to hide a success message after 1.5 seconds, uncomment the following lines
+                    setTimeout(function() {
+                        $("#success-modal").modal("hide");
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+                error: function(xhr, status, error) {
+                    // If you want to handle errors and display error messages, uncomment the following lines
+                    var errors = xhr.responseJSON.errors;
+                    var errorString = "";
+                    $.each(errors, function(key, value) {
+                        errorString += value + "<br>";
+                    });
+                    $("#error-modal").modal("show");
+                    $("#error-message").html(errorString);
+                    setTimeout(function() {
+                        $("#error-modal").modal("hide");
+                    }, 2000);
+                },
+            });
+        })
+        // edit package
+        $(document).on('click', '.edit-package', function() {
+            var id = $(this).val();
+            $('#edit-package-modal').modal('show');
+            $.ajax({
+                url: "{{ route('get-package') }}",
+                data: {
+                    id: id
+                },
+                type: "get",
+                success: function(res) {
+                    var data = res.package;
+                    $('#update_id').val(data.id);
+                    $('#edit_name').val(data.name)
+                    $('#edit_price').val(data.price)
+                }
+            })
+        })
+        $(document).on('submit', '#update-package', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('update-package') }}",
+                data: new FormData(this),
+                method: "POST",
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    console.log(result);
+                    if (result.success) {
+                        $("#update-package")[0].reset();
+                        $("#success-modal").modal("show");
+                        $("#success-message").html(result.success);
+                        // If you want to hide the modal after a successful submission, uncomment the following line
+                        $("#edit-package-modal").modal("hide");
                         $(".data").load(
                             window.location.href + " .data"
                         );

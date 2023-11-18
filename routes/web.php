@@ -49,7 +49,11 @@ Route::middleware('auth')->group(function () {
         Route::post('add-package', [AdminControler::class, 'addPackage'])->name('add-package');
         Route::post('add-inclusion', [AdminControler::class, 'addInclusion'])->name('add-inclusion');
         Route::get('delete-inclusion', [AdminControler::class, 'deleteInclusion'])->name('delete-inclusion');
+        Route::post('delete-package', [AdminControler::class, 'deletePackage'])->name('delete-package');
+        Route::post('update-package', [AdminControler::class, 'updatePackage'])->name('update-package');
+        Route::get('get-package', [AdminControler::class, 'getPackage'])->name('get-package');
     });
+
 
     Route::middleware('user')->group(function () {
         Route::get('make-appointment/{id}/{name}', [UserController::class, 'makeAppointment'])->name('make-appointment');

@@ -356,4 +356,43 @@ class AdminControler extends Controller
             return response()->json(['error' => 'Inclusion already exists!']);
         }
     }
+    public function deletePackage(Request $request)
+    {
+        $id = $request->admin_id;
+        $password = $request->admin_password;
+        $package = Package::find($id);
+
+        $match = Hash::check($password, Auth::user()->password);
+        if ($match) {
+            $package->delete();
+            return response()->json([
+                'success' => 'Package deleted!'
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Incorrect password!'
+            ]);
+        }
+    }
+    public function getPackage(Request $request)
+    {
+        $id = $request->id;
+        $package = Package::find($id);
+        return response()->json([
+            'package' => $package
+        ]);
+    }
+    public function updatePackage(Request $request)
+    {
+        $id = $request->update_id;
+        $name = $request->edit_name;
+        $price = $request->edit_price;
+        $package = Package::find($id);
+        $package->name = $name;
+        $package->price = $price;
+        $package->save();
+        return response()->json([
+            'success' => "Package Updated!"
+        ]);
+    }
 }
