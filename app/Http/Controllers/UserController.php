@@ -6,6 +6,7 @@ use App\Http\Requests\AppointmentRequest;
 use App\Http\Requests\PatientRequest;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\Package;
 use App\Models\Patient;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
@@ -122,5 +123,15 @@ class UserController extends Controller
         return response()->json([
             'name' => $appoint->name,
         ]);
+    }
+
+    public function morePackage()
+    {
+        return view('user.package');
+    }
+    public function availPackage($id)
+    {
+        $package = Package::find($id);
+        return view('user.avail-package', compact('package'));
     }
 }

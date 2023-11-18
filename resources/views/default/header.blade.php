@@ -52,7 +52,8 @@
                                     @endif
                                     <li><a href="#services-section">Services </a></li>
 
-                                    <li><a href="#package-section">Package</a></li>
+                                    <li class="{{ request()->routeIs('more-package') ? 'active' : '' }}"><a
+                                            href="#package-section">Package</a></li>
                                     @if (Auth::check())
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">

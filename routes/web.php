@@ -28,6 +28,8 @@ Route::get('/', function () {
     return view('default.home', compact('doctor'));
 });
 
+Route::get('more-package', [UserController::class, 'morePackage'])->name('more-package');
+
 Route::get('dashboard', [HomeController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
@@ -62,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::get('my-appointment', [UserController::class, 'myAppointment'])->name('my-appointment');
         Route::get('cancel-appointment', [UserController::class, 'cancelAppointment'])->name('cancel-appointment');
         Route::get('get-patient-info', [UserController::class, 'getPatientInfo'])->name('get-patient-info');
+        Route::get('avail-package/{id}', [UserController::class, 'availPackage'])->name('avail-package');
     });
 
     Route::middleware('doctor')->group(function () {

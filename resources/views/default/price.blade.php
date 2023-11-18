@@ -11,8 +11,9 @@
         </div>
         <div class="row">
             @php
-                $package = App\Models\Package::all();
+                $package = App\Models\Package::take(3)->get();
             @endphp
+
             <!-- Single Table -->
             @foreach ($package as $item)
                 <div class="col-lg-4 col-md-12 col-12 wow fadeInDown">
@@ -39,7 +40,10 @@
                             </div>
                         </ul>
                         <div class="table-bottom">
-                            <a class="btn" href="#">Avail</a>
+                            <a class="btn"
+                                @if (Auth::check()) href="{{ route('avail-package', $item->id) }}"
+                            @else
+                                href="/login" @endif>Avail</a>
                         </div>
                         <!-- Table Bottom -->
                     </div>
@@ -47,7 +51,9 @@
             @endforeach
             <!-- End Single Table-->
         </div>
-        <button id="more-pack" class="px-3 py-3 rounded bg-primary text-white">Show More</button>
+        <a href="{{ route('more-package') }}">
+            <button id="more-pack" class="px-3 py-3 rounded bg-primary text-white">Show More</button>
+        </a>
     </div>
 </section>
 <!--/ End Pricing Table -->
