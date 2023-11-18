@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::post('delete-account', [AdminControler::class, 'deleteAccount'])->name('delete-account');
         Route::post('update-account', [AdminControler::class, 'updateAccount'])->name('update-account');
         Route::get('info-patient', [AdminControler::class, 'infoPatient'])->name('info-pattient');
+        Route::post('add-package', [AdminControler::class, 'addPackage'])->name('add-package');
+        Route::post('add-inclusion', [AdminControler::class, 'addInclusion'])->name('add-inclusion');
+        Route::get('delete-inclusion', [AdminControler::class, 'deleteInclusion'])->name('delete-inclusion');
     });
 
     Route::middleware('user')->group(function () {

@@ -14,7 +14,7 @@
                     Healthcare
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse {{ request()->routeIs(['doctor', 'staff']) ? 'show' : '' }}" id="collapseLayouts"
+                <div class="collapse {{ request()->routeIs(['doctor', 'package']) ? 'show' : '' }}" id="collapseLayouts"
                     aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{ request()->routeIs('doctor') ? 'active' : '' }}"
@@ -45,7 +45,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            {{ Auth::user()->name }}
+            <span class="text-primary">{{ Auth::user()->name }}</span>
         </div>
     </nav>
 </div>

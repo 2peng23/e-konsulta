@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DoctorRequest;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\Package;
 use App\Models\Patient;
 use App\Models\Schedule;
 use App\Models\User;
@@ -281,5 +282,78 @@ class AdminControler extends Controller
         return response()->json([
             'patient' => $patient
         ]);
+    }
+    public function addPackage(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'inclusion' => 'required',
+        ]);
+        $existing = Package::whereName($request->name)->first();
+        if ($existing) {
+            return response()->json([
+                'error' => "Package already exist!"
+            ]);
+        }
+        $package = new Package();
+        $package->name = $request->name;
+        $package->price = $request->price;
+        $package->inclusion = $request->inclusion;
+        $package->save();
+        return response()->json([
+            'success' => 'Package added!'
+        ]);
+    }
+
+    public function deleteInclusion(Request $request)
+    {
+        $id = $request->id;
+        $index = $request->index;
+
+        $package = Package::find($id);
+
+        $inclusions = $package->inclusion;
+
+
+        // Delete the inclusion at the specified index
+        unset($inclusions[$index]);
+
+        // Reindex the array to maintain consecutive keys
+        $inclusions = array_values($inclusions);
+
+        // Update the package with the modified inclusions
+        $package->update(['inclusion' => $inclusions]);
+
+        return response()->json(['error' => 'Deleted']);
+    }
+    public function addInclusion(Request $request)
+    {
+        $id = $request->inc_id;
+        $package = Package::find($id);
+
+        // Get the existing inclusions array
+        $existingInclusions = $package->inclusion;
+
+        // Get the new inclusion from the request
+        $newInclusion = $request->new_inclusion;
+
+        // Check if the new inclusion already exists to avoid duplicates
+        if (!in_array($newInclusion, $existingInclusions)) {
+            // Add the new inclusion to the existing inclusions array
+            $existingInclusions[] = $newInclusion;
+
+            // Update the package with the modified inclusions array
+            $package->update(['inclusion' => $existingInclusions]);
+
+            // You may also save the package if needed, although update already saves changes
+            // $package->save();
+
+            // Return a response or perform any other actions as needed
+            return response()->json(['success' => 'Inclusion added!']);
+        } else {
+            // Return a response indicating that the inclusion already exists
+            return response()->json(['error' => 'Inclusion already exists!']);
+        }
     }
 }

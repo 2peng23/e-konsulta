@@ -41,7 +41,7 @@
                         </div>
                     </ul>
                     <div class="table-bottom">
-                        <a class="btn" href="#">Book Now</a>
+                        <a class="btn" href="#">Avail</a>
                     </div>
                     <!-- Table Bottom -->
                 </div>
@@ -64,7 +64,7 @@
                         <li><i class="icofont icofont-ui-check"></i>Fecalysis</li>
                     </ul>
                     <div class="table-bottom">
-                        <a class="btn" href="#">Book Now</a>
+                        <a class="btn" href="#">Avail</a>
                     </div>
                     <!-- Table Bottom -->
                 </div>
@@ -92,7 +92,7 @@
                         <li><i class="icofont icofont-ui-check"></i>VRDRL</li>
                     </ul>
                     <div class="table-bottom">
-                        <a class="btn" href="#">Book Now</a>
+                        <a class="btn" href="#">Avail</a>
                     </div>
                     <!-- Table Bottom -->
                 </div>
@@ -133,7 +133,7 @@
                         <li><i class="icofont icofont-ui-check"></i>Chloride</li>
                     </ul>
                     <div class="table-bottom">
-                        <a class="btn" href="#">Book Now</a>
+                        <a class="btn" href="#">Avail</a>
                     </div>
                     <!-- Table Bottom -->
                 </div>
@@ -166,7 +166,7 @@
                         <li><i class="icofont icofont-ui-check"></i>SGPT</li>
                     </ul>
                     <div class="table-bottom">
-                        <a class="btn" href="#">Book Now</a>
+                        <a class="btn" href="#">Avail</a>
                     </div>
                     <!-- Table Bottom -->
                 </div>
@@ -194,7 +194,7 @@
                         <li><i class="icofont icofont-ui-check"></i>Chest X-Ray</li>
                     </ul>
                     <div class="table-bottom">
-                        <a class="btn" href="#">Book Now</a>
+                        <a class="btn" href="#">Avail</a>
                     </div>
                     <!-- Table Bottom -->
                 </div>
