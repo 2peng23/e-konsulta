@@ -78,7 +78,7 @@ class DoctorController extends Controller
         $body = [
             'number' => $appoint->phone,
             'message' => $details['greetings'] . $details['body'] . $details['endpart'],
-            'sendername' => 'Birung',
+            'sendername' => 'SEMAPHORE',
             'apikey' => 'bf09f02bd326ac4b087d104786368fdf' // Replace with your Semaphore API key
         ];
 
@@ -116,7 +116,7 @@ class DoctorController extends Controller
         $body = [
             'number' => $appoint->phone,
             'message' => $details['greetings'] . $details['body'] . $details['endpart'],
-            'sendername' => 'Birung',
+            'sendername' => 'SEMAPHORE',
             'apikey' => 'bf09f02bd326ac4b087d104786368fdf' // Replace with your Semaphore API key
         ];
 
